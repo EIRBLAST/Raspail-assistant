@@ -155,10 +155,10 @@ class PlanningCommands(commands.Cog):
         
         
         
-        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*20), color = 'white')
-        fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 40)
-        fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', 50)
-        fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', 50)
+        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*10), color = 'white')
+        fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 20)
+        fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
+        fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
         #LIGNE VERTICAL
         Ldraw = ImageDraw.Draw(im)
         points = [
