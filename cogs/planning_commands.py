@@ -104,7 +104,7 @@ class PlanningCommands(commands.Cog):
             message += f"\n\t - Tu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['teatcher']} le {DAYS[event['timedelta']['days']]} à {event['timedelta']['hours']}h {' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
         
         await ctx.send(content=message)
-    @cog_ext.cog_slash(name="planningTest",description='T\'envoie le planning du jour choisis',guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="edt",description='T\'envoie l\'emploie du temp du jour choisis',guild_ids= [879451596247933039])
     async def edt_image(self,ctx:SlashContext):
         def check(context:ComponentContext):
             return ctx.author == context.author
@@ -302,7 +302,7 @@ class PlanningCommands(commands.Cog):
         im.save(buffer_output, format='PNG')
         buffer_output.seek(0)
         file = discord.File(buffer_output, 'edt.png')
-        await ctx.send(file=file,content='Voici ton planning')
+        await ctx.send(file=file,content=f'Voici le planning du {jour.strftime("%d/%m/%Y")}')
         
 
 def setup(bot:RaspailAssistant):
