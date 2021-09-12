@@ -69,7 +69,6 @@ class PlanningCommands(commands.Cog):
 
         events = []
         for line in datas["planning"]:
-            print(user_grp, line["grps"][column])
             if line["grps"][column] == user_grp :
                 events.append(line)
         
