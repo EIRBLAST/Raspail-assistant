@@ -62,13 +62,17 @@ class GroupSelect(commands.Cog):
         
         #retrive selected group
         groupe = int(select_ctx.selected_options[0])
+        
         #add user to database
         await self.client.database.add_user(ctx.author.id,groupe)
-        #give the role to the person
-        Role:discord.Role = await ctx.guild.fetch_roles(self.groups[groupe])
-        #get member
-        member:discord.Member = await ctx.guild.fetch_member(ctx.author.id)
         
+        #retrive the role
+        Roles:List[discord.Role] = (await ctx.guild.fetch_roles(self.groups[groupe]))
+        index = [i.id for i in Roles].index(self.groups[groupe])
+        Role = Roles[index]
+        
+        #get the member
+        member:discord.Member = await ctx.guild.fetch_member(ctx.author.id)
         #remove old group if any
         for role in member.roles:
             if role in role_list:
