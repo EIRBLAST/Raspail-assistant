@@ -11,7 +11,8 @@ slash = SlashCommand(client,sync_commands = True, sync_on_cog_reload = True,)
 
 #main extensions
 main_extension = [
-    'cogs.group_management'
+    'cogs.group_management',
+    'cogs.planning_commands'
 ]
 
 
