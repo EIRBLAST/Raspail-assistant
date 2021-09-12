@@ -58,7 +58,7 @@ class PlanningCommands(commands.Cog):
     @cog_ext.cog_slash(name="planning",description='T\'envoie ton planning de la semaine ou de la semaine prochaine si on est la weekend :)',guild_ids= [879451596247933039])
     async def send_planning(self,ctx:SlashContext):
         today = date.today()
-        user_grp = self.client.database.get_user_info(ctx.author.id)
+        user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"]
 
         if today.weekday() < 5:
             monday = today - timedelta(days = today.weekday())
