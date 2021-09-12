@@ -119,7 +119,7 @@ class PlanningCommands(commands.Cog):
         else:
             monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
         #week parity
-        week_parity = get_week_parity(today)
+        week_parity = 1 - get_week_parity(today)/1
         #-----------------------------#
 
         #-----------------------------#
@@ -216,10 +216,13 @@ class PlanningCommands(commands.Cog):
             event_name = f"{event['type']} de {event['subject']}"
             if event['type'] == 'colles':
                 size = 1
+                color = 'gray'
             elif event['type'] == 'TIPE':
                 size = 2
+                color = 'yellow'
             elif event['type'] == 'tp':
                 size = 3
+                color = 'yellow'
             #create bloc
             img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
             draw = ImageDraw.Draw(img)
