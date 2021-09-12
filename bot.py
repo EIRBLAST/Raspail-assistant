@@ -4,13 +4,18 @@ from discord_slash import SlashCommand
 
 TOKEN     = os.environ['TOKEN']
 
+#bot client
 client = RaspailAssistant()
-slash = SlashCommand(client)
+#slash command client
+slash = SlashCommand(client, sync_commands=True)
 
+#main extensions
 main_extension = [
     'cogs.group_management'    
 ]
 
+#remove the help command
+client.remove_command('help')
 
 #called when the bot starts
 @client.event
