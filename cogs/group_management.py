@@ -67,7 +67,7 @@ class GroupSelect(commands.Cog):
         await self.client.database.add_user(ctx.author.id,groupe)
         
         #retrive the role
-        Roles:List[discord.Role] = (await ctx.guild.fetch_roles(self.groups[groupe]))
+        Roles:List[discord.Role] = (await ctx.guild.fetch_roles())
         index = [i.id for i in Roles].index(self.groups[groupe])
         Role = Roles[index]
         
