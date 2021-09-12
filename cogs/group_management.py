@@ -61,7 +61,7 @@ class GroupSelect(commands.Cog):
         select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row)
         
         #retrive selected group
-        groupe = int(select_ctx.selected_options)
+        groupe = int(select_ctx.selected_options[0])
         #add user to database
         await self.client.database.add_user(ctx.author.id,groupe)
         #give the role to the person
