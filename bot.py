@@ -7,7 +7,7 @@ TOKEN     = os.environ['TOKEN']
 #bot client
 client = RaspailAssistant()
 #slash command client
-slash = SlashCommand(client, sync_commands=True)
+slash = SlashCommand(client)
 
 #main extensions
 main_extension = [
