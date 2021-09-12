@@ -119,7 +119,7 @@ class PlanningCommands(commands.Cog):
         else:
             monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
         #week parity
-        week_parity = get_week_parity(today,groupe)
+        week_parity = get_week_parity(today)
         #-----------------------------#
 
         #-----------------------------#
@@ -207,7 +207,7 @@ class PlanningCommands(commands.Cog):
             liste_image.append(img)
         #colles et TP
         jour = monday + timedelta(days=jour_index)
-        events = get_events_of_the_day(jour)
+        events = get_events_of_the_day(jour,groupe)
         for event in events:
             room = event['room'] if event['room'] else '.'
             prof_name = event['teatcher']
