@@ -58,7 +58,7 @@ class PlanningCommands(commands.Cog):
     @cog_ext.cog_slash(name="planning",description='T\'envoie ton planning de la semaine ou de la semaine prochaine si on est la weekend :)',guild_ids= [879451596247933039])
     async def send_planning(self,ctx:SlashContext):
         today = date.today()
-        user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"]
+        user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
 
         if today.weekday() < 5:
             monday = today - timedelta(days = today.weekday())
@@ -69,11 +69,12 @@ class PlanningCommands(commands.Cog):
 
         events = []
         for line in datas["planning"]:
-            print(line["grps"][column])
+            print(user_grp, line["grps"][column])
             if line["grps"][column] == user_grp :
                 events.append(line)
         
-        events.sort(key= lambda line : DAYS.index(line["day"].split(" ")[0].lower()))
+        events.sort(key= lambda line : timedelta(**line["timedelta"]))
+
         message = f'La semaine du lundi {monday.strftime("%d/%m/%Y")}:'
         for event in events:
             message += f"\nTu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['prof']} le {event['day']}{' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
