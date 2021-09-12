@@ -2,11 +2,14 @@ import discord
 import aioredis
 import os
 import json
+from typing import List
 from discord.ext import commands
 
 REDIS_URL = os.environ['REDIS_URL']
 
 class database():
+    """[Wrapper for redis database]
+    """
     def __init__(self):
         #create a pool of connection
         #not nessesary but I don't want to read the doc again
@@ -71,5 +74,7 @@ class RaspailAssistant(commands.Bot):
         # Enabling self_bot ensures that the bot does not try and parse messages that start with "!".
         super().__init__(command_prefix="!", self_bot=True, intents= discord.Intents.default())
         #database object
-        self.database = database()
+        self.database:database = database()
+        #list of server for slash command
+        self.guild_ids:List[int] = [ 879451596247933039 ]
         

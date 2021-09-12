@@ -22,7 +22,7 @@ class GroupSelect(commands.Cog):
             ,client.get_emoji(886502374238208031)
             ,client.get_emoji(886502373944602655)
         ]
-    @cog_ext.cog_slash(name="groupe",description='te permet de selectionner ton groupe de colle')
+    @cog_ext.cog_slash(name="groupe",description='te permet de selectionner ton groupe de colle',guild_ids= [879451596247933039])
     async def group_(self,ctx:SlashContext):
         embed = discord.Embed(title="Selectionne le groupe dans lequel tu te trouve")
         embed.set_image(url='https://www.personal.psu.edu/afr3/blogs/siowfa13/stock-photo-small-group-of-smiling-business-people-standing-together-on-white-background-141633655.jpg')
@@ -61,7 +61,7 @@ class GroupSelect(commands.Cog):
         ]
         #respond to the orginal message
         await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
-    @cog_ext.cog_slash(name="TEST",description='Groupe')
+    @cog_ext.cog_slash(name="TEST",description='Groupe',guild_ids= [879451596247933039])
     async def groupid(self,ctx:commands.Context):
         """
         string = '['
