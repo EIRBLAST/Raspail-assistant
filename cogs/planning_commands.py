@@ -50,7 +50,7 @@ def informatique_parity(day):
     monday = day - timedelta(days = day.weekday())
     column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y"))
     res = datas["informatique"][column_index]
-    return 'pair'*(res == 'B') + 'impair'*(res == 'A') + 'impair'*(res == 'B')
+    return 'pair'*(res == 'B') + 'impair'*(res == 'A') + 'entier'*(res == 'C')
 
 
 def IsParite(parite:str,group_number:int,week_parite:int) ->bool:
@@ -110,10 +110,23 @@ class PlanningCommands(commands.Cog):
         if not await self.client.database.user_in_database(ctx.author.id):
             await ctx.send('utilise /groupe avant tout ;)')
             return
+        #get group
+        groupe = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
+        #compute week------------------#
+        today = date.today()
+        if today.weekday() < 5:
+            monday = today - timedelta(days = today.weekday())
+        else:
+            monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
+        #week parity
+        week_parity = get_week_parity(today)
+        #-----------------------------#
 
-        X_LENGHT = 300
-        Y_LENGHT = 100
-        DX = 50
+        #-----------------------------#
+        #declare constant
+        X_LENGHT = 600
+        Y_LENGHT = 200
+        DX = 100
 
         with open('datas/edt.json','r') as item:
             edt = json.load(item)
@@ -137,14 +150,15 @@ class PlanningCommands(commands.Cog):
         #wait for selection
         select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row,check=check)
         
-        jour = int(select_ctx.selected_options[0])
-        jour = edt[jour]
-        groupe = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
-
-        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*10), color = 'white')
-        fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 20)
-        fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
-        fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
+        jour_index = int(select_ctx.selected_options[0])
+        jour = edt[jour_index]
+        
+        
+        
+        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*20), color = 'white')
+        fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 40)
+        fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', 50)
+        fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', 50)
         #LIGNE VERTICAL
         Ldraw = ImageDraw.Draw(im)
         points = [
@@ -160,7 +174,8 @@ class PlanningCommands(commands.Cog):
             y_position = Y_LENGHT * (i - 8)
             draw.text((x_position,y_position), f'{i}h', font=fnt_high, fill=(0, 0, 0))
 
-        liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,1)]
+        #cours
+        liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,week_parity)]
         liste_image = []
         for i,cours in enumerate(liste_cours):
             #block size
@@ -190,7 +205,38 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             liste_image.append(img)
-
+        #colles et TP
+        jour = monday + timedelta(days=jour_index)
+        events = get_events_of_the_day(jour)
+        for event in events:
+            room = event['room'] if event['room'] else '.'
+            prof_name = event['teatcher']
+            start_hour =event['timedelta']
+            size = 1
+            event_name = f"{event['type']} de {event['subject']}"
+            if event['type'] == 'colles':
+                size = 1
+            elif event['type'] == 'TIPE':
+                size = 2
+            elif event['type'] == 'tp':
+                size = 3
+            #create bloc
+            img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
+            draw = ImageDraw.Draw(img)
+            #draw text
+            TOP_TEXT = event_name
+            MIDDLE_TEXT = prof_name
+            BOTTOM_TEXT = room
+            x_position = X_LENGHT//4
+            y_position = (Y_LENGHT)*size//3
+            draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
+            draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
+            draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+            #paste the image
+            im.paste(liste_image[i] ,(DX,Y_LENGHT*(start_hour-7)))
+                
+                
+        #lignes verticales
         for i in range(11):
 
             Ldraw = ImageDraw.Draw(im)
@@ -200,13 +246,14 @@ class PlanningCommands(commands.Cog):
                 (X_LENGHT+DX,Y_LENGHT *i)
             ]
             
-            
             Ldraw.line(points, fill ="black", width = 1)
 
+        #paste courses
         for i,image in enumerate(liste_cours):
             first_hour = liste_cours[i]['heures'][0] - 1
             im.paste(liste_image[i] ,(DX,Y_LENGHT*(first_hour-7)))
 
+        #add additional lines
         for i,cours in enumerate(liste_cours):
             Ldraw = ImageDraw.Draw(im)
             
@@ -229,6 +276,8 @@ class PlanningCommands(commands.Cog):
 
             
             Ldraw.line(points, fill ="black", width = 1) 
+        
+        #send the planning
         buffer_output = io.BytesIO()
         im.save(buffer_output, format='PNG')
         buffer_output.seek(0)
