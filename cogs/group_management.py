@@ -39,6 +39,8 @@ class GroupSelect(commands.Cog):
         ]
     @cog_ext.cog_slash(name="groupe",description='te permet de selectionner ton groupe de colle',guild_ids= [879451596247933039])
     async def group_(self,ctx:SlashContext):
+        def check(res):
+            return ctx.author.id == res.user.id and ctx.channel.id == res.channel.id
         role_list:List[discord.Role] = [ctx.guild.get_role(role) for role in self.groups]
         embed = discord.Embed(title="Selectionne le groupe dans lequel tu te trouve")
         embed.set_image(url='https://www.personal.psu.edu/afr3/blogs/siowfa13/stock-photo-small-group-of-smiling-business-people-standing-together-on-white-background-141633655.jpg')
@@ -58,7 +60,7 @@ class GroupSelect(commands.Cog):
         await ctx.send(embed=embed,components=[action_row])
 
         #wait for selection
-        select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row)
+        select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row,check=check)
         
         #retrive selected group
         groupe = int(select_ctx.selected_options[0])
