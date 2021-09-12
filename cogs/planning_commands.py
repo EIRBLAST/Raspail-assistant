@@ -120,7 +120,7 @@ class PlanningCommands(commands.Cog):
         else:
             monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
         #week parity
-        week_parity = get_week_parity(today)
+        week_parity = get_week_parity(monday)
         #-----------------------------#
 
         #-----------------------------#
