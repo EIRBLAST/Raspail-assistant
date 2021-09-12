@@ -68,7 +68,7 @@ class database():
         return json.loads(data)
 
 #client class overloaded with database features
-class RaspailAssistant(commands.Bot):
+class RaspailAssistant(discord.Client):
     def __init__(self):
         # Setting help_command=False ensures that discord.py does not create a !help command.
         # Enabling self_bot ensures that the bot does not try and parse messages that start with "!".
