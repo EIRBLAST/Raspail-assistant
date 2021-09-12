@@ -77,7 +77,7 @@ class PlanningCommands(commands.Cog):
 
         message = f'La semaine du lundi {monday.strftime("%d/%m/%Y")}:'
         for event in events:
-            message += f"\nTu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['prof']} le {event['day']}{' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
+            message += f"\nTu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['teatcher']} le {DAYS[event['timedelta']['days']]} à {event['timedelta']['hours']} {' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
         
         await ctx.send(content=message)
 
