@@ -125,17 +125,17 @@
         {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":4, "hours":13},"room":null,"grps":[1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,		8,	9,	10,	11,	12,	1,	2]},
         
         
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,		11,	12,	1,	2,	3,	4,	5]},
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,		2,	3,	4,	5,	6,	7,	8]},
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,		5,	6,	7,	8,	9,	10,	11]},
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,		6,	7,	8,	9,	10,	11,	12]},
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,		7,	8,	9,	10,	11,	12,	1]},
-        {"type":"tp","subject":"S2I","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,		8,	9,	10,	11,	12,	1,	2]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,		9,	10,	11,	12,	1,	2,	3]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,		10,	11,	12,	1,	2,	3,	4]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,		12,	1,	2,	3,	4,	5,	6]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,		1,	2,	3,	4,	5,	6,	7]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,		3,	4,	5,	6,	7,	8,	9]},
-        {"type":"tp","subject":"S2I","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,		4,	5,	6,	7,	8,	9,	10]}
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,		11,	12,	1,	2,	3,	4,	5]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,		2,	3,	4,	5,	6,	7,	8]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,		5,	6,	7,	8,	9,	10,	11]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,		6,	7,	8,	9,	10,	11,	12]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,		7,	8,	9,	10,	11,	12,	1]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Supper","timedelta":{"days":3, "hours":16},"room":null,"grps":[1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,		8,	9,	10,	11,	12,	1,	2]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,		9,	10,	11,	12,	1,	2,	3]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,		10,	11,	12,	1,	2,	3,	4]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,		12,	1,	2,	3,	4,	5,	6]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,		1,	2,	3,	4,	5,	6,	7]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,		3,	4,	5,	6,	7,	8,	9]},
+        {"type":"TIPE","subject":"TIPE","teatcher":"Gendre","timedelta":{"days":4, "hours":14},"room":null,"grps":[9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,		4,	5,	6,	7,	8,	9,	10]}
     ]
 }
