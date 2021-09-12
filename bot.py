@@ -14,8 +14,6 @@ main_extension = [
     'cogs.group_management'
 ]
 
-#remove the help command
-client.remove_command('help')
 
 guild_ids = [879451596247933039] # Put your server ID in this array.
 

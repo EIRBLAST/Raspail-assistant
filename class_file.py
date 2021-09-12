@@ -72,7 +72,7 @@ class RaspailAssistant(discord.Client):
     def __init__(self):
         # Setting help_command=False ensures that discord.py does not create a !help command.
         # Enabling self_bot ensures that the bot does not try and parse messages that start with "!".
-        super().__init__(command_prefix="!", self_bot=True, intents= discord.Intents.default())
+        super().__init__(command_prefix="!",help_command=False ,self_bot=True, intents= discord.Intents.default())
         #database object
         self.database:database = database()
         #list of server for slash command
