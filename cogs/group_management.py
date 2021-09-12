@@ -45,7 +45,7 @@ class GroupSelect(commands.Cog):
         #create selection object
         select = create_select(
         options=[
-            create_select_option(f"Groupe {group+1}", value=f"{group}", emoji=f"{self.numbers[group]}")
+            create_select_option(f"Groupe {group+1}", value=f"{group}", emoji=self.numbers[group])
             for group in range(12)
         ],
         placeholder="Utilise ce menu déroulant pour séléctionner ton groupe ",
