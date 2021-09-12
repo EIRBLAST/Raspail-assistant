@@ -115,7 +115,7 @@ class PlanningCommands(commands.Cog):
         groupe = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
         #compute week------------------#
         today = date.today()
-        if today.weekday() > 5:
+        if today.weekday() < 5:
             monday = today - timedelta(days = today.weekday())
         else:
             monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
