@@ -208,7 +208,6 @@ class PlanningCommands(commands.Cog):
         #colles et TP
         jour = monday + timedelta(days=jour_index)
         events = get_events_of_the_day(jour,groupe)
-        print(events)
         for event in events:
             room = event['room'] if event['room'] else '.'
             prof_name = event['teatcher']
@@ -237,7 +236,7 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
             draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             #paste the image
-            im.paste(liste_image[i] ,(DX,Y_LENGHT*(start_hour-7)))
+            im.paste(img ,(DX,Y_LENGHT*(start_hour-7)))
                 
                 
         #lignes verticales
