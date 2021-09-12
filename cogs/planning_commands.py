@@ -262,7 +262,7 @@ class PlanningCommands(commands.Cog):
             MIDDLE_TEXT = prof_name
             BOTTOM_TEXT = room
             
-            x_position = X_LENGHT//8
+            x_position = X_LENGHT//10
             y_position = (Y_LENGHT)*size//4
             
             
