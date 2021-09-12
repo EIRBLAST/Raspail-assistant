@@ -119,7 +119,7 @@ class PlanningCommands(commands.Cog):
         else:
             monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
         #week parity
-        week_parity = 1 - get_week_parity(today)/1
+        week_parity = 1 - get_week_parity(today)
         #-----------------------------#
 
         #-----------------------------#
@@ -211,7 +211,7 @@ class PlanningCommands(commands.Cog):
         for event in events:
             room = event['room'] if event['room'] else '.'
             prof_name = event['teatcher']
-            start_hour =event['timedelta']
+            start_hour =event['timedelta']['days']
             size = 1
             event_name = f"{event['type']} de {event['subject']}"
             if event['type'] == 'colles':
