@@ -63,11 +63,14 @@ class GroupSelect(commands.Cog):
         await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
     @cog_ext.cog_slash(name="TEST",description='Groupe')
     async def groupid(self,ctx:commands.Context):
+        """
         string = '['
         for role in ctx.guild.roles:
             string += f'{role.id},'
         string += ']'
         await ctx.send(content=string)
-    
+        """
+        for role in ctx.guild.roles:
+            await ctx.send(f'{role.name}|{role.id}')
 def setup(bot:RaspailAssistant):
     bot.add_cog(GroupSelect(bot))
