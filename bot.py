@@ -11,7 +11,7 @@ slash = SlashCommand(client, sync_commands=True)
 
 #main extensions
 main_extension = [
-    'cogs.group_management'    
+    'cogs.group_management'
 ]
 
 #remove the help command
@@ -27,4 +27,4 @@ async def on_ready():
     print('Loaded extensions')
 
 if __name__ == '__main__':
-    client.run()
+    client.run(TOKEN)
