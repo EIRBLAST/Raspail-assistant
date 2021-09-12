@@ -208,6 +208,7 @@ class PlanningCommands(commands.Cog):
         #colles et TP
         jour = monday + timedelta(days=jour_index)
         events = get_events_of_the_day(jour,groupe)
+        print(events)
         for event in events:
             room = event['room'] if event['room'] else '.'
             prof_name = event['teatcher']
