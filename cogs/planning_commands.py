@@ -11,23 +11,35 @@ DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
 
 
 def get_events_of_the_day(day:datetime.date,grp:int) -> list:
-	"""Return a list of events of the day `day`od group `grp`
+    """Return a list of events of the day `day`od group `grp`
 
-	Args:
-		day (datetime.date): The day
-		grp (int): The group
+    Args:
+        day (datetime.date): The day
+        grp (int): The group
     
-	Returns:
-		[list]: A list of events  
-	"""    
-	monday = day - timedelta(days = day.weekday())
-	column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y")) 
+    Returns:
+        [list]: A list of events  
+    """    
+    monday = day - timedelta(days = day.weekday())
+    column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y")) 
 
-	events = []
-	for line in datas["planning"]:
-		if line["grps"][column_index] == int(grp) and line["timedelta"]["days"] == day.weekday():
-			events.append(line)
+    events = []
+    for line in datas["planning"]:
+        if line["grps"][column_index] == int(grp) and line["timedelta"]["days"] == day.weekday():
+            events.append(line)
 
-	events.sort(key= lambda line : timedelta(**line["timedelta"]))
-	
-	return events
+    events.sort(key= lambda line : timedelta(**line["timedelta"]))
+    
+    return events
+
+def get_week_parity(day):
+    monday = day - timedelta(days = day.weekday())
+    column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y"))
+
+    return datas["weeknumber"][column_index] % 2
+
+def informatique_parity(day):
+    monday = day - timedelta(days = day.weekday())
+    column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y"))
+
+    return datas["informatique"][column_index]
