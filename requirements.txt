@@ -6,4 +6,4 @@ requests
 aioredis==2.0.0b1
 async-timeout
 asyncio
-discord-interactions
+discord-py-interactions
