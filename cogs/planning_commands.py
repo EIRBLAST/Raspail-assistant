@@ -242,7 +242,7 @@ class PlanningCommands(commands.Cog):
         for event in events:
             room = event['room'] if event['room'] else '.'
             prof_name = event['teatcher']
-            start_hour =event['timedelta']['days']
+            start_hour =event['timedelta']['hours']
             size = 1
             event_name = f"{event['type']} de {event['subject']}"
             if event['type'] == 'colles':
@@ -261,12 +261,10 @@ class PlanningCommands(commands.Cog):
             TOP_TEXT = event_name
             MIDDLE_TEXT = prof_name
             BOTTOM_TEXT = room
-            print(f'{TOP_TEXT},{MIDDLE_TEXT},{BOTTOM_TEXT}')
             
             x_position = X_LENGHT//4
             y_position = (Y_LENGHT)*size//3
             
-            print(f'{x_position} {y_position}')
             print(f'{Y_LENGHT*(start_hour-7)}')
             
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
