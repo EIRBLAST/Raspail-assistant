@@ -1,9 +1,12 @@
-import discord
 from discord.ext import commands
 from discord_slash import SlashCommand , cog_ext, SlashContext ,ComponentContext
+from discord_slash.utils.manage_components import create_select,create_button, create_select_option, create_actionrow,wait_for_component
 from class_file import *
+from PIL import Image, ImageDraw,ImageFont
 
 import json
+import io
+import discord
 
 from datetime import datetime, timedelta, date
 from time import time
@@ -46,10 +49,28 @@ def get_week_parity(day):
 def informatique_parity(day):
     monday = day - timedelta(days = day.weekday())
     column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y"))
+    res = datas["informatique"][column_index]
+    return 'pair'*(res == 'B') + 'impair'*(res == 'A') + 'impair'*(res == 'B')
 
-    return datas["informatique"][column_index]
 
+def IsParite(parite:str,group_number:int,week_parite:int) ->bool:
+    """this function compute if the group attend the course
 
+    Args:
+        parite (str): the parite string
+        group_number (int): the group id
+        week_parite (int): the week parity
+
+    Returns:
+        bool: wether the group attend or not
+    """
+    if parite == 'entier' : return True
+    if parite == 'pair':
+        return group_number%2 != week_parite
+    elif parite == 'impair':
+        return group_number%2 == week_parite
+    else:
+        return True
 
 class PlanningCommands(commands.Cog):
     def __init__(self, client:RaspailAssistant):
@@ -57,6 +78,9 @@ class PlanningCommands(commands.Cog):
 
     @cog_ext.cog_slash(name="planning",description='T\'envoie ton planning de la semaine ou de la semaine prochaine si on est la weekend :)',guild_ids= [879451596247933039])
     async def send_planning(self,ctx:SlashContext):
+        if not await self.client.database.user_in_database(ctx.author.id):
+            await ctx.send('utilise /groupe avant tout ;)')
+            return
         today = date.today()
         user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
 
@@ -79,6 +103,138 @@ class PlanningCommands(commands.Cog):
             message += f"\n\t - Tu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['teatcher']} le {DAYS[event['timedelta']['days']]} à {event['timedelta']['hours']}h {' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
         
         await ctx.send(content=message)
+    @cog_ext.cog_slash(name="planningTest",description='T\'envoie le planning du jour choisis',guild_ids= [879451596247933039])
+    async def edt_image(self,ctx:SlashContext):
+        def check(context:ComponentContext):
+            return ctx.author == context.author
+        if not await self.client.database.user_in_database(ctx.author.id):
+            await ctx.send('utilise /groupe avant tout ;)')
+            return
+
+        X_LENGHT = 300
+        Y_LENGHT = 100
+        DX = 50
+
+        with open('datas/edt.json','r') as item:
+            edt = json.load(item)
+            edt = edt['edt']
+        
+        select = create_select(
+        options=[
+            create_select_option(f"{jour}", value=f"{i}", emoji='📅')
+            for i,jour in enumerate(['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'])
+        ],
+        placeholder="Utilise ce menu déroulant pour séléctionner le jour ",
+        min_values=1, # the minimum number of options a user must select
+        max_values=1  # the maximum number of options a user can select
+        )
+        action_row = create_actionrow(select)
+        embed= discord.Embed(title='Sélectione un jour')
+        embed.set_image(url='https://media.gettyimages.com/photos/happy-student-in-class-picture-id539246041?s=612x612')
+        #send the embed and selection
+        await ctx.send(embed=embed,components=[action_row])
+
+        #wait for selection
+        select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row,check=check)
+        
+        jour = int(select_ctx.selected_options[0])
+        jour = edt[jour]
+        groupe = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
+
+        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*10), color = 'white')
+        fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 20)
+        fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
+        fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', 25)
+        #LIGNE VERTICAL
+        Ldraw = ImageDraw.Draw(im)
+        points = [
+                (DX,0 ), 
+                (DX,Y_LENGHT *10)
+            ]
+        Ldraw.line(points, fill ="black", width = 1)
+
+        #heures
+        draw = ImageDraw.Draw(im)
+        for i in range(8,18):
+            x_position = 0
+            y_position = Y_LENGHT * (i - 8)
+            draw.text((x_position,y_position), f'{i}h', font=fnt_high, fill=(0, 0, 0))
+
+        liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,1)]
+        liste_image = []
+        for i,cours in enumerate(liste_cours):
+            #block size
+            size = len(cours['heures'])
+            #bloc color
+            if cours["nom"] == 'Physique':
+                color = "purple"
+            elif cours['nom'] == 'Math':
+                color = "green"
+            elif cours['nom'] == 'Anglais':
+                color = 'blue'
+            elif 'SII' in cours['nom']:
+                color = 'yellow'
+            elif cours['nom'] == 'Français':
+                color = 'pink'
+            elif cours['nom'] == 'Informatique':
+                color = 'cyan'
+            #bloc text
+            TOP_TEXT = cours['nom']
+            BOTTOM_TEXT = cours['salle'] if 'salle' != None else "XXXX"
+            #create bloc
+            img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
+            draw = ImageDraw.Draw(img)
+            #draw text
+            x_position = X_LENGHT//3
+            y_position = (Y_LENGHT)*size//3
+            draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
+            draw.text((x_position,y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+            liste_image.append(img)
+
+        for i in range(11):
+
+            Ldraw = ImageDraw.Draw(im)
+            
+            points = [
+                (0,Y_LENGHT * i), 
+                (X_LENGHT+DX,Y_LENGHT *i)
+            ]
+            
+            
+            Ldraw.line(points, fill ="black", width = 1)
+
+        for i,image in enumerate(liste_cours):
+            first_hour = liste_cours[i]['heures'][0] - 1
+            im.paste(liste_image[i] ,(DX,Y_LENGHT*(first_hour-7)))
+
+        for i,cours in enumerate(liste_cours):
+            Ldraw = ImageDraw.Draw(im)
+            
+            first_heure = liste_cours[i]['heures'][0] - 8
+            last_heure = liste_cours[i]['heures'][-1] - 7
+
+            points = [
+                (0,Y_LENGHT * first_heure), 
+                (X_LENGHT+DX,Y_LENGHT *first_heure)
+            ]
+            
+            
+            Ldraw.line(points, fill ="black", width = 1)
+            
+
+            points = [
+                (0,Y_LENGHT *last_heure), 
+                (X_LENGHT+DX,Y_LENGHT *last_heure)
+            ]
+
+            
+            Ldraw.line(points, fill ="black", width = 1) 
+        buffer_output = io.BytesIO()
+        im.save(buffer_output, format='PNG')
+        buffer_output.seek(0)
+        file = discord.File(buffer_output, 'edt.png')
+        await ctx.send(file=file,content='Voici ton planning')
+        
 
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
