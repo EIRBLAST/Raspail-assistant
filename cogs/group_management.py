@@ -62,7 +62,7 @@ class GroupSelect(commands.Cog):
         #respond to the orginal message
         await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
     @cog_ext.cog_slash(name="TEST",description='Groupe',guild_ids= [879451596247933039])
-    async def groupid(self,ctx:commands.Context):
+    async def groupid(self,ctx:SlashContext):
         """
         string = '['
         for role in ctx.guild.roles:

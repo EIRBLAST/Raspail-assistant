@@ -17,6 +17,11 @@ main_extension = [
 #remove the help command
 client.remove_command('help')
 
+guild_ids = [879451596247933039] # Put your server ID in this array.
+
+@slash.slash(name="ping", guild_ids=guild_ids)
+async def _ping(ctx): # Defines a new "context" (ctx) command called "ping."
+    await ctx.send(f"Pong! ({client.latency*1000}ms)")
 #called when the bot starts
 @client.event
 async def on_ready():
@@ -27,4 +32,5 @@ async def on_ready():
     print('Loaded extensions')
 
 if __name__ == '__main__':
+    
     client.run(TOKEN)
