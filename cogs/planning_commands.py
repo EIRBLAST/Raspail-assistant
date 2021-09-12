@@ -270,7 +270,7 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
             draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             #paste the image
-            im.paste(img ,(DX,Y_LENGHT*(start_hour-7)))
+            im.paste(img ,(DX,Y_LENGHT*(start_hour-8)))
         
         #add additional lines
         for i,cours in enumerate(liste_cours):
