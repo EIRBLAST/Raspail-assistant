@@ -244,7 +244,7 @@ class PlanningCommands(commands.Cog):
             prof_name = event['teatcher']
             start_hour =event['timedelta']['hours']
             size = 1
-            event_name = f"{event['type']} de {event['subject']}"
+            event_name = f"{event['subject']}"
             if event['type'] == 'colles':
                 size = 1
                 color = 'gray'
@@ -258,14 +258,15 @@ class PlanningCommands(commands.Cog):
             img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
             draw = ImageDraw.Draw(img)
             #draw text
+            TOP_TOP_TEXT = event['type']
             TOP_TEXT = event_name
             MIDDLE_TEXT = prof_name
             BOTTOM_TEXT = room
             
-            x_position = DX + 10
+            x_position = X_LENGHT //4
             y_position = (Y_LENGHT)*size//4
             
-            
+            draw.text((x_position,y_position-25), TOP_TOP_TEXT,font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
             draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
