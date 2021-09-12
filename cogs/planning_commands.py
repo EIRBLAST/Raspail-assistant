@@ -262,10 +262,9 @@ class PlanningCommands(commands.Cog):
             MIDDLE_TEXT = prof_name
             BOTTOM_TEXT = room
             
-            x_position = X_LENGHT//4
-            y_position = (Y_LENGHT)*size//3
+            x_position = X_LENGHT//6
+            y_position = (Y_LENGHT)*size//4
             
-            print(f'{Y_LENGHT*(start_hour-7)}')
             
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
