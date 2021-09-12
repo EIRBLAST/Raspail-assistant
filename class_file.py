@@ -29,8 +29,8 @@ class database():
         #create the user_info dict
         user_info = {
             'group':group,
-            'reminder_planning':False,
-            'reminder_colle':False
+            'reminder_planning':None,
+            'reminder_colle':None
         }
         
         user_info = json.dumps(user_info)
