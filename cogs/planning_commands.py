@@ -1,6 +1,7 @@
 from discord.ext import commands
 from discord_slash import SlashCommand , cog_ext, SlashContext ,ComponentContext
 from discord_slash.utils.manage_components import create_select,create_button, create_select_option, create_actionrow,wait_for_component
+from discord_slash.model import ButtonStyle
 from class_file import *
 from PIL import Image, ImageDraw,ImageFont
 
@@ -153,7 +154,17 @@ class PlanningCommands(commands.Cog):
         jour_index = int(select_ctx.selected_options[0])
         jour = edt[jour_index]
         
-        
+        #create the reponse button
+        buttons = [
+            create_button(
+                style=ButtonStyle.green,
+                label=f"Tu as Sélectioner un jour",
+                disabled=True,
+                emoji='📅'
+            ),
+        ]
+        #respond to the orginal message
+        await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
         
         im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*10), color = 'white')
         fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', 20)
@@ -205,6 +216,26 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             liste_image.append(img)
+        
+                
+                
+        #lignes verticales
+        for i in range(11):
+
+            Ldraw = ImageDraw.Draw(im)
+            
+            points = [
+                (0,Y_LENGHT * i), 
+                (X_LENGHT+DX,Y_LENGHT *i)
+            ]
+            
+            Ldraw.line(points, fill ="black", width = 1)
+
+        #paste courses
+        for i,image in enumerate(liste_cours):
+            first_hour = liste_cours[i]['heures'][0] - 1
+            im.paste(liste_image[i] ,(DX,Y_LENGHT*(first_hour-7)))
+
         #colles et TP
         jour = monday + timedelta(days=jour_index)
         events = get_events_of_the_day(jour,groupe)
@@ -237,25 +268,7 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             #paste the image
             im.paste(img ,(DX,Y_LENGHT*(start_hour-7)))
-                
-                
-        #lignes verticales
-        for i in range(11):
-
-            Ldraw = ImageDraw.Draw(im)
-            
-            points = [
-                (0,Y_LENGHT * i), 
-                (X_LENGHT+DX,Y_LENGHT *i)
-            ]
-            
-            Ldraw.line(points, fill ="black", width = 1)
-
-        #paste courses
-        for i,image in enumerate(liste_cours):
-            first_hour = liste_cours[i]['heures'][0] - 1
-            im.paste(liste_image[i] ,(DX,Y_LENGHT*(first_hour-7)))
-
+        
         #add additional lines
         for i,cours in enumerate(liste_cours):
             Ldraw = ImageDraw.Draw(im)
