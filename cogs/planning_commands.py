@@ -1,3 +1,8 @@
+import discord
+from discord.ext import commands
+from discord_slash import SlashCommand , cog_ext, SlashContext ,ComponentContext
+from class_file import *
+
 import json
 
 from datetime import datetime, timedelta, date
@@ -43,3 +48,37 @@ def informatique_parity(day):
     column_index = datas["mondays"].index(monday.strftime("%d/%m/%Y"))
 
     return datas["informatique"][column_index]
+
+
+
+class PlanningCommands(commands.Cog):
+    def __init__(self, client:RaspailAssistant):
+        self.client = client
+
+    @cog_ext.cog_slash(name="planning",description='T\'envoie ton planning de la semaine ou de la semaine prochaine si on est la weekend :)',guild_ids= [879451596247933039])
+    async def send_planning(self,ctx:SlashContext):
+        today = date.today()
+        user_grp = self.client.database.get_user_info(ctx.author.id)
+
+        if today.weekday() < 5:
+            monday = today - timedelta(days = today.weekday())
+        else:
+            monday = today - timedelta(days = today.weekday()) + timedelta(days = 7)
+
+        column = datas["mondays"].index(monday.strftime("%d/%m/%Y")) 
+
+        events = []
+        for line in datas["planning"]:
+            print(line["grps"][column])
+            if line["grps"][column] == user_grp :
+                events.append(line)
+        
+        events.sort(key= lambda line : DAYS.index(line["day"].split(" ")[0].lower()))
+        message = f'La semaine du lundi {monday.strftime("%d/%m/%Y")}:'
+        for event in events:
+            message += f"\nTu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['prof']} le {event['day']}{' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
+        
+        await ctx.send(content=message)
+
+def setup(bot:RaspailAssistant):
+    bot.add_cog(PlanningCommands(bot))
