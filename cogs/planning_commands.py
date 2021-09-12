@@ -124,9 +124,9 @@ class PlanningCommands(commands.Cog):
 
         #-----------------------------#
         #declare constant
-        X_LENGHT = 600
-        Y_LENGHT = 200
-        DX = 100
+        X_LENGHT = 300
+        Y_LENGHT = 100
+        DX = 50
 
         with open('datas/edt.json','r') as item:
             edt = json.load(item)
