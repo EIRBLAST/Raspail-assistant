@@ -245,7 +245,7 @@ class PlanningCommands(commands.Cog):
             start_hour =event['timedelta']['hours']
             size = 1
             event_name = f"{event['subject']}"
-            if event['type'] == 'colles':
+            if event['type'] == 'colle':
                 size = 1
                 color = 'gray'
             elif event['type'] == 'TIPE':
