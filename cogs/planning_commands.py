@@ -275,7 +275,7 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position-25), TOP_TOP_TEXT,font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
-            draw.text((x_position,y_position+20), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+            draw.text((x_position,y_position+45), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             #paste the image
             im.paste(img ,(DX,Y_LENGHT*(start_hour-8)))
         
