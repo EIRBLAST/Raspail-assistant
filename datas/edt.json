@@ -100,7 +100,7 @@
                 {
                     "nom":"Physique",
                     "salle":"C302",
-                    "heures":[8,9],
+                    "heures":[8],
                     "parite":"impair"
                 },
                 {
