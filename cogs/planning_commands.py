@@ -275,7 +275,7 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position-25), TOP_TOP_TEXT,font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
-            draw.text((x_position,y_position+50), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+            draw.text((x_position,y_position+20), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
             #paste the image
             im.paste(img ,(DX,Y_LENGHT*(start_hour-8)))
         
@@ -308,7 +308,7 @@ class PlanningCommands(commands.Cog):
         im.save(buffer_output, format='PNG')
         buffer_output.seek(0)
         file = discord.File(buffer_output, 'edt.png')
-        await ctx.send(file=file,content=f'Voici le planning du {jour.strftime("%d/%m/%Y")}')
+        await ctx.send(file=file,content=f'Voici le planning du {DAYS[jour_index]} {jour.strftime("%d/%m/%Y")}')
         
 
 def setup(bot:RaspailAssistant):
