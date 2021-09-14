@@ -136,7 +136,7 @@ class PlanningCommands(commands.Cog):
         select = create_select(
         options=[
             create_select_option(f"{jour}", value=f"{i}", emoji='📅')
-            for i,jour in enumerate(['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'])
+            for i,jour in enumerate(DAYS)
         ],
         placeholder="Utilise ce menu déroulant pour séléctionner le jour ",
         min_values=1, # the minimum number of options a user must select
@@ -186,7 +186,11 @@ class PlanningCommands(commands.Cog):
             draw.text((x_position,y_position), f'{i}h', font=fnt_high, fill=(0, 0, 0))
 
         #cours
-        liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,week_parity)]
+        liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,week_parity) and cours['nom'] != 'Informatique']
+        if IsParite(informatique_parity(monday),groupe,week_parity) and {"nom":"Informatique","salle":"INFO","heures":[10,11],"parite":"INFO"} in jour['cours']:
+            if informatique_parity(monday) == 'entier': salle = 'B411'
+            else : salle = 'B401'
+            liste_cours.append({"nom":"Informatique","salle":salle,"heures":[10,11],"parite":"INFO"})
         liste_image = []
         for i,cours in enumerate(liste_cours):
             #block size
@@ -204,6 +208,8 @@ class PlanningCommands(commands.Cog):
                 color = 'pink'
             elif cours['nom'] == 'Informatique':
                 color = 'cyan'
+            elif cours['nom'] == 'DS':
+                color = 'red'
             #bloc text
             TOP_TEXT = cours['nom']
             BOTTOM_TEXT = cours['salle'] if 'salle' != None else "XXXX"
@@ -263,8 +269,8 @@ class PlanningCommands(commands.Cog):
             MIDDLE_TEXT = prof_name
             BOTTOM_TEXT = room
             
-            x_position = X_LENGHT //4
-            y_position = (Y_LENGHT)*size//4
+            x_position = X_LENGHT //3
+            y_position = (Y_LENGHT)*size//3
             
             draw.text((x_position,y_position-25), TOP_TOP_TEXT,font=fnt_bold, fill=(0, 0, 0))
             draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
