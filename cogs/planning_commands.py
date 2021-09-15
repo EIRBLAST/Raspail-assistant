@@ -250,6 +250,14 @@ class PlanningCommands(commands.Cog):
                     (DX + j*X_LENGHT,Y_LENGHT *10)
                 ]
             Ldraw.line(points, fill ="black", width = 1)
+        #lignes heures
+        for j in range(11):
+            Ldraw = ImageDraw.Draw(image)
+            points = [
+                    (0,Y_LENGHT *j), 
+                    (DX,Y_LENGHT *j)
+                ]
+            Ldraw.line(points, fill ="black", width = 1)
         #send the planning
         buffer_output = io.BytesIO()
         image.save(buffer_output, format='PNG')
