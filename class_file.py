@@ -53,7 +53,7 @@ class database():
         return bool(await redis_con.exists(key))
     async def get_user_info(self,user_id:int) -> dict:
         """[summary]
-
+            return stored info about that user
         Args:
             user_id (int): [the unique discord ID]
 
@@ -69,6 +69,11 @@ class database():
 
 #client class overloaded with database features
 class RaspailAssistant(commands.Bot):
+    """[summary]
+
+    just the bot
+    
+    """
     def __init__(self):
         # Setting help_command=False ensures that discord.py does not create a !help command.
         # Enabling self_bot ensures that the bot does not try and parse messages that start with "!".

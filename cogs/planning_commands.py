@@ -78,7 +78,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     Y_LENGHT = 100
 
     #load fonts and create the image
-    im =  Image.new('RGB', (X_LENGHT, Y_LENGHT*10), color = 'white')
+    im =  Image.new('RGB', (X_LENGHT, Y_LENGHT*11), color = 'white')
     fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', Y_LENGHT//5)
     fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', Y_LENGHT//4)
     
@@ -237,17 +237,17 @@ class PlanningCommands(commands.Cog):
         
         #heures
         draw = ImageDraw.Draw(image)
-        for i in range(8,18):
+        for i in range(8,19):
             x_position = 0
             y_position = Y_LENGHT * (i - 8)
             draw.text((x_position,y_position), f'{i}h', font=fnt_high, fill=(0, 0, 0))
         
         #lignes verticales
-        for j in range(5):
+        for j in range(6):
             Ldraw = ImageDraw.Draw(image)
             points = [
                     (DX + j*X_LENGHT,0 ), 
-                    (DX + j*X_LENGHT,Y_LENGHT *10)
+                    (DX + j*X_LENGHT,Y_LENGHT *11)
                 ]
             Ldraw.line(points, fill ="black", width = 1)
         #lignes heures
@@ -336,13 +336,13 @@ class PlanningCommands(commands.Cog):
         Ldraw = ImageDraw.Draw(im)
         points = [
                 (DX,0 ), 
-                (DX,Y_LENGHT *10)
+                (DX,Y_LENGHT *11)
             ]
         Ldraw.line(points, fill ="black", width = 1)
 
         #heures
         draw = ImageDraw.Draw(im)
-        for i in range(8,18):
+        for i in range(8,19):
             x_position = 0
             y_position = Y_LENGHT * (i - 8)
             draw.text((x_position,y_position), f'{i}h', font=fnt_high, fill=(0, 0, 0))
@@ -388,7 +388,7 @@ class PlanningCommands(commands.Cog):
                 
                 
         #lignes verticales
-        for i in range(11):
+        for i in range(12):
 
             Ldraw = ImageDraw.Draw(im)
             

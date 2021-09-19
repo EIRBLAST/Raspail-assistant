@@ -18,6 +18,8 @@ main_extension = [
 
 guild_ids = [879451596247933039] # Put your server ID in this array.
 
+
+#load the bot cogs
 for file in main_extension:
     client.load_extension(file)
     print(f'loaded {file}')
@@ -29,7 +31,7 @@ async def _ping(ctx): # Defines a new "context" (ctx) command called "ping."
 #called when the bot starts
 @client.event
 async def on_ready():
-    #load the bot cogs
+
     print('Loaded extensions')
 
 
