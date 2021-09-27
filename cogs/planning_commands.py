@@ -228,7 +228,7 @@ class PlanningCommands(commands.Cog):
             message += f"\n\t - Tu as {event['type']} {('de ' + event['subject'] + ' ') if event['type'] == 'colle' else ''}avec {event['teatcher']} le {DAYS[event['timedelta']['days']]} à {event['timedelta']['hours']}h {' dans la salle ' + event['room'] + '.' if event['room'] else '.'}".format(event = event)
         
         #create the Image
-        image = Image.new('RGB', (X_LENGHT * 5 + DX, Y_LENGHT*10), color = 'white')
+        image = Image.new('RGB', (X_LENGHT * 5 + DX, Y_LENGHT*11), color = 'white')
         
         individual_imag = [ get_day_planing(user_grp,get_week_parity(monday),jour,monday)  for jour in edt ]
         
@@ -328,7 +328,7 @@ class PlanningCommands(commands.Cog):
         #respond to the orginal message
         await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
         
-        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*10), color = 'white')
+        im =  Image.new('RGB', (X_LENGHT + DX, Y_LENGHT*11), color = 'white')
         fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', Y_LENGHT//5)
         fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', Y_LENGHT//4)
         fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', Y_LENGHT//4)
