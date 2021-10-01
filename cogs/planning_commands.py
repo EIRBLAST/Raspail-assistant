@@ -100,7 +100,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
 
         if cours["nom"] == 'Physique':
             color = "purple"
-        elif cours['nom'] == 'Math':
+        elif cours['nom'] == 'Maths':
             color = "green"
         elif cours['nom'] == 'Anglais':
             color = 'blue'
