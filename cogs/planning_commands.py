@@ -477,11 +477,12 @@ class PlanningCommands(commands.Cog):
 
     @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploie du temps et coloscope papier.',guild_ids= [879451596247933039])
     async def papier(self,ctx:SlashContext, *documents):
+        print("/papier, documents:",documents)
         to_send = documents or ["edt","colloscope"]
 
         edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
         colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
-        
+
         if "edt" in documents:
             to_send.append(edt)
 
