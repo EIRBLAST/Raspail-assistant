@@ -37,6 +37,7 @@ class GroupSelect(commands.Cog):
             886513325083615252, #group 12
             886513351788728350, #group 13
         ]
+
     @cog_ext.cog_slash(name="groupe",description='te permet de selectionner ton groupe de colle',guild_ids= [879451596247933039])
     async def group_(self,ctx:SlashContext):
         def check(context:ComponentContext):
@@ -94,6 +95,7 @@ class GroupSelect(commands.Cog):
         ]
         #respond to the orginal message
         await select_ctx.edit_origin(embed=embed,components=[create_actionrow(*buttons)])
+
     @cog_ext.cog_slash(name="TEST",description='Groupe',guild_ids= [879451596247933039])
     @commands.has_role("Admins")
     async def groupid(self,ctx:SlashContext):
@@ -106,5 +108,6 @@ class GroupSelect(commands.Cog):
         """
         for role in ctx.guild.roles:
             await ctx.send(f'{role.name}|{role.id}')
+
 def setup(bot:RaspailAssistant):
     bot.add_cog(GroupSelect(bot))

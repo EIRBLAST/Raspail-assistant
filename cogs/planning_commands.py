@@ -15,9 +15,7 @@ from time import time
 
 datas = json.load(open("datas/colloscope.json", "r"))
 
-
 DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
-
 
 def get_events_of_the_day(day:datetime.date,grp:int) -> list:
     """Return a list of events of the day `day`od group `grp`
@@ -72,6 +70,7 @@ def IsParite(parite:str,group_number:int,week_parite:int) ->bool:
         return group_number%2 == week_parite
     else:
         return True
+
 def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Image.Image:
     #declare constant
     X_LENGHT = 300
@@ -91,17 +90,21 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         else : salle = 'B401'
         liste_cours.append({"nom":"Informatique","salle":salle,"heures":[10,11],"parite":"INFO"})
     liste_image = []
+
     for i,cours in enumerate(liste_cours):
         #block size
         size = len(cours['heures'])
         #bloc color
+
+        #colors = {"physique": "purple","Math": "green","Anglais": "blue","SII": "yellow","Français": "pink","Informatique": "cyan","DS": "red",}
+
         if cours["nom"] == 'Physique':
             color = "purple"
         elif cours['nom'] == 'Math':
             color = "green"
         elif cours['nom'] == 'Anglais':
             color = 'blue'
-        elif 'SII' in cours['nom']:
+        elif 'S2I' in cours['nom']:
             color = 'yellow'
         elif cours['nom'] == 'Français':
             color = 'pink'
@@ -109,6 +112,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
             color = 'cyan'
         elif cours['nom'] == 'DS':
             color = 'red'
+
         #bloc text
         TOP_TEXT = cours['nom']
         BOTTOM_TEXT = cours['salle'] if 'salle' != None else "XXXX"
@@ -121,8 +125,6 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
         draw.text((x_position,y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
         liste_image.append(img)
-    
-            
 
     #paste courses
     for i,image in enumerate(liste_cours):
@@ -132,12 +134,14 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     #colles et TP
     jour = monday + timedelta(days=jour_index)
     events = get_events_of_the_day(jour,groupe)
+
     for event in events:
         room = event['room'] if event['room'] else '.'
         prof_name = event['teatcher']
         start_hour =event['timedelta']['hours']
         size = 1
         event_name = f"{event['subject']}"
+
         if event['type'] == 'colle':
             size = 1
             color = 'gray'
@@ -147,9 +151,11 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         elif event['type'] == 'tp':
             size = 3
             color = 'yellow'
+
         #create bloc
         img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
         draw = ImageDraw.Draw(img)
+
         #draw text
         TOP_TOP_TEXT = event['type']
         TOP_TEXT = event_name
@@ -190,6 +196,8 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         
         Ldraw.line(points, fill ="black", width = 1)
     return im
+
+
 class PlanningCommands(commands.Cog):
     def __init__(self, client:RaspailAssistant):
         self.client = client
