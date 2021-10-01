@@ -266,7 +266,7 @@ class PlanningCommands(commands.Cog):
         #send the file
         await ctx.send(content=message,file=file)
     
-    @cog_ext.cog_slash(name="edt",description='T\'envoie l\'emploie du temp du jour choisis',guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="edt",description='T\'envoie l\'emploie du temps du jour choisis',guild_ids= [879451596247933039])
     async def edt_image(self,ctx:SlashContext):
         def check(context:ComponentContext):
             return ctx.author == context.author
@@ -471,7 +471,22 @@ class PlanningCommands(commands.Cog):
         buffer_output.seek(0)
         file = discord.File(buffer_output, 'edt.png')
         await ctx.send(file=file,content=f'Voici le planning du {DAYS[jour_index]} {jour.strftime("%d/%m/%Y")}')
-        
 
+    @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploie du temps et coloscope papier.',guild_ids= [879451596247933039])
+    async def papier(self,ctx:SlashContext):
+        edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
+        colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
+        await ctx.send(files=[edt, colloscope],content='Voici pour toi !')
+
+
+        
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
+    
+    
+
+"""
+TODO LIST
+TODO: /now Renvoie pour chaque grp le cours actuel
+TODO: Presence
+"""
