@@ -72,6 +72,7 @@ def IsParite(parite:str,group_number:int,week_parite:int) ->bool:
         return group_number%2 == week_parite
     else:
         return True
+
 def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Image.Image:
     #declare constant
     X_LENGHT = 300
@@ -190,6 +191,8 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         
         Ldraw.line(points, fill ="black", width = 1)
     return im
+
+
 class PlanningCommands(commands.Cog):
     def __init__(self, client:RaspailAssistant):
         self.client = client
@@ -473,10 +476,19 @@ class PlanningCommands(commands.Cog):
         await ctx.send(file=file,content=f'Voici le planning du {DAYS[jour_index]} {jour.strftime("%d/%m/%Y")}')
 
     @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploie du temps et coloscope papier.',guild_ids= [879451596247933039])
-    async def papier(self,ctx:SlashContext):
+    async def papier(self,ctx:SlashContext, *documents):
+        to_send = documents or ["edt","colloscope"]
+
         edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
         colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
-        await ctx.send(files=[edt, colloscope],content='Voici pour toi :) !')
+        
+        if "edt" in documents:
+            to_send.append(edt)
+
+        if "colloscope" in documents:
+            to_send.append(colloscope)
+       
+        await ctx.send(files=to_send,content='Voici pour toi :) !')
 
 
         
