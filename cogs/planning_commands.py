@@ -476,7 +476,7 @@ class PlanningCommands(commands.Cog):
     async def papier(self,ctx:SlashContext):
         edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
         colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
-        await ctx.send(files=[edt, colloscope],content='Voici pour toi !')
+        await ctx.send(files=[edt, colloscope],content='Voici pour toi :) !')
 
 
         
