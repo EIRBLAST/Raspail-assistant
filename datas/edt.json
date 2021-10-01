@@ -16,19 +16,19 @@
                     "parite":"impair"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B410",
                     "heures":[10],
                     "parite":"pair"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B410",
                     "heures":[11],
                     "parite":"entier"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B411",
                     "heures":[13,14],
                     "parite":"entier"
@@ -51,7 +51,7 @@
             "jour":1,
             "cours":[
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B415",
                     "heures":[9],
                     "parite":"impair"
@@ -69,25 +69,25 @@
                     "parite":"impair"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B415",
                     "heures":[10,11],
                     "parite":"pair"
                 },
                 {
-                    "nom":"SII",
+                    "nom":"S2I",
                     "salle":"A314",
                     "heures":[14,15],
                     "parite":"entier"
                 },
                 {
-                    "nom":"SII TD Gendre",
+                    "nom":"S2I: TD Mr. Gendre",
                     "salle":"A314",
                     "heures":[16,17],
                     "parite":"impair"
                 },
                 {
-                    "nom":"SII TD Supper",
+                    "nom":"S2I: TD Mr. Supper",
                     "salle":"A314",
                     "heures":[16,17],
                     "parite":"pair"
@@ -145,13 +145,13 @@
                     "parite":"entier"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B410",
                     "heures":[10,11],
                     "parite":"impair"
                 },
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B410",
                     "heures":[14,15],
                     "parite":"entier"
@@ -162,7 +162,7 @@
             "jour":4,
             "cours":[
                 {
-                    "nom":"Math",
+                    "nom":"Maths",
                     "salle":"B410",
                     "heures":[8,9],
                     "parite":"entier"
@@ -180,7 +180,7 @@
             "cours":[
                 {
                     "nom":"DS",
-                    "salle":"???",
+                    "salle":"",
                     "heures":[8,9,10,11],
                     "parite":"entier"
                 }
