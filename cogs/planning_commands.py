@@ -76,14 +76,16 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     X_LENGHT = 300
     Y_LENGHT = 100
 
-    #load fonts and create the image
+    vertical_alignement = lambda txt, font: X_LENGHT // 2 - font.getsize(txt)[0] // 2
+
+    # load fonts and create the image
     im =  Image.new('RGB', (X_LENGHT, Y_LENGHT*11), color = 'white')
     fnt = ImageFont.truetype('datas/Roboto-Regular.ttf', Y_LENGHT//5)
     fnt_bold = ImageFont.truetype('datas/Roboto-Bold.ttf', Y_LENGHT//4)
     
     jour_index = jour['jour']
 
-    #cours
+    # cours
     liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,week_parity) and cours['nom'] != 'Informatique']
     if IsParite(informatique_parity(monday),groupe,week_parity) and {"nom":"Informatique","salle":"INFO","heures":[10,11],"parite":"INFO"} in jour['cours']:
         if informatique_parity(monday) == 'entier': salle = 'B411'
@@ -92,53 +94,50 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     liste_image = []
 
     for i,cours in enumerate(liste_cours):
-        #block size
-        size = len(cours['heures'])
-        #bloc color
+        # block size
+        size = cours["duration"]["hours"]
+        
+        # bloc color
+        colors = {"Physique": "purple" ,"Maths": "green" ,"Anglais": "blue","S2I": "yellow","Français": "pink","Informatique": "cyan","DS": "red","colle":"grey","TIPE":"yellow", "tp": "yellow"}
+        
+        k = ""
+        for k in colors.keys():
+            if k in cours["nom"]:
+                key = k 
+                break
 
-        #colors = {"physique": "purple","Math": "green","Anglais": "blue","SII": "yellow","Français": "pink","Informatique": "cyan","DS": "red",}
+        color = colors.get(k) or "yellow"
 
-        if cours["nom"] == 'Physique':
-            color = "purple"
-        elif cours['nom'] == 'Maths':
-            color = "green"
-        elif cours['nom'] == 'Anglais':
-            color = 'blue'
-        elif 'S2I' in cours['nom']:
-            color = 'yellow'
-        elif cours['nom'] == 'Français':
-            color = 'pink'
-        elif cours['nom'] == 'Informatique':
-            color = 'cyan'
-        elif cours['nom'] == 'DS':
-            color = 'red'
-
-        #bloc text
+        # bloc text
         TOP_TEXT = cours['nom']
-        BOTTOM_TEXT = cours['salle'] if 'salle' != None else "XXXX"
-        #create bloc
+        BOTTOM_TEXT = cours['salle'] or ""
+
+        # create bloc
         img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
         draw = ImageDraw.Draw(img)
-        #draw text
+
+        # draw text
         x_position = X_LENGHT//3
         y_position = (Y_LENGHT)*size//3
-        draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
-        draw.text((x_position,y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+
+        draw.text((vertical_alignement(TOP_TEXT, fnt_bold),y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
+        draw.text((vertical_alignement(BOTTOM_TEXT, fnt),y_position+25), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
+        
         liste_image.append(img)
 
-    #paste courses
+    # paste courses
     for i,image in enumerate(liste_cours):
-        first_hour = liste_cours[i]['heures'][0] - 1
+        first_hour = liste_cours[i]["timedelta"]["hours"] - 1
         im.paste(liste_image[i] ,(0,Y_LENGHT*(first_hour-7)))
 
-    #colles et TP
+    # colles et TP
     jour = monday + timedelta(days=jour_index)
     events = get_events_of_the_day(jour,groupe)
 
     for event in events:
         room = event['room'] if event['room'] else '.'
         prof_name = event['teatcher']
-        start_hour =event['timedelta']['hours']
+        start_hour = event['timedelta']['hours']
         size = 1
         event_name = f"{event['subject']}"
 
@@ -152,11 +151,11 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
             size = 3
             color = 'yellow'
 
-        #create bloc
+        # create bloc
         img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
         draw = ImageDraw.Draw(img)
 
-        #draw text
+        # draw text
         TOP_TOP_TEXT = event['type']
         TOP_TEXT = event_name
         MIDDLE_TEXT = prof_name
@@ -165,11 +164,15 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
         x_position = X_LENGHT //3
         y_position = (Y_LENGHT)*size//3
         
-        draw.text((x_position,y_position-25), TOP_TOP_TEXT,font=fnt_bold, fill=(0, 0, 0))
-        draw.text((x_position,y_position)   , TOP_TEXT   , font=fnt_bold, fill=(0, 0, 0))
-        draw.text((x_position,y_position+25), MIDDLE_TEXT, font=fnt, fill=(0, 0, 0))
-        draw.text((x_position,y_position+45), BOTTOM_TEXT, font=fnt, fill=(0, 0, 0))
-        #paste the image
+        TEXTS = [ (event['type'],fnt_bold), (event_name,fnt_bold),(prof_name,fnt),(room,fnt)]
+
+        text_heights = [t[1].getsize(t[0])[1] for t in TEXTS]
+
+        # Draw text with vertical and horizontal alignement
+        for i, TEXT in enumerate(TEXTS):
+            draw.text((vertical_alignement(TEXT[0], TEXT[1]),(Y_LENGHT*size - sum(text_heights) )// 2 + 25 * i ), TEXT[0],font=TEXT[1], fill=(0, 0, 0))
+
+        # #paste the image
         im.paste(img ,(0,Y_LENGHT*(start_hour-8)))
     
     #add additional lines
@@ -184,10 +187,8 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
             (X_LENGHT,Y_LENGHT *first_heure)
         ]
         
-        
         Ldraw.line(points, fill ="black", width = 1)
         
-
         points = [
             (0,Y_LENGHT *last_heure), 
             (X_LENGHT,Y_LENGHT *last_heure)
@@ -212,7 +213,7 @@ class PlanningCommands(commands.Cog):
             edt = edt['edt']
         fnt_high = ImageFont.truetype('datas/Roboto-Bold.ttf', Y_LENGHT//4)
         if not await self.client.database.user_in_database(ctx.author.id):
-            await ctx.send('utilise /groupe avant tout ;)')
+            await ctx.send('Utilise /groupe avant tout ;)')
             return
         today = date.today()
         user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
@@ -308,7 +309,7 @@ class PlanningCommands(commands.Cog):
             create_select_option(f"{jour}", value=f"{i}", emoji='📅')
             for i,jour in enumerate(DAYS)
         ],
-        placeholder="Utilise ce menu déroulant pour séléctionner le jour ",
+        placeholder="Utilise ce menu déroulant pour séléctionner le jour",
         min_values=1, # the minimum number of options a user must select
         max_values=1  # the maximum number of options a user can select
         )
