@@ -367,23 +367,18 @@ class PlanningCommands(commands.Cog):
             #block size
             size = len(cours['heures'])
             #bloc color
-            if cours["nom"] == 'Physique':
-                color = "purple"
-            elif cours['nom'] == 'Math':
-                color = "green"
-            elif cours['nom'] == 'Anglais':
-                color = 'blue'
-            elif 'SII' in cours['nom']:
-                color = 'yellow'
-            elif cours['nom'] == 'Français':
-                color = 'pink'
-            elif cours['nom'] == 'Informatique':
-                color = 'cyan'
-            elif cours['nom'] == 'DS':
-                color = 'red'
+            colors = {"Physique": "purple" ,"Maths": "green" ,"Anglais": "blue","S2I": "yellow","Français": "pink","Informatique": "cyan","DS": "red","colle":"grey","TIPE":"yellow", "tp": "yellow"}
+        
+            k = ""
+            for k in colors.keys():
+                if k in cours["nom"]:
+                    key = k 
+                    break
+
+            color = colors.get(k) or "yellow"
             #bloc text
             TOP_TEXT = cours['nom']
-            BOTTOM_TEXT = cours['salle'] if 'salle' != None else "XXXX"
+            BOTTOM_TEXT = cours['salle'] or ""
             #create bloc
             img = Image.new('RGB', (X_LENGHT,Y_LENGHT*size), color)
             draw = ImageDraw.Draw(img)
