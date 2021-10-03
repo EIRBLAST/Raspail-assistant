@@ -486,8 +486,6 @@ class PlanningCommands(commands.Cog):
         edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
         colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
         await ctx.send(files=[edt, colloscope],content='Voici pour toi :) !')
-
-
         
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
