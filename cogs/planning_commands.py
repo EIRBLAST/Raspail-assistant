@@ -137,7 +137,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     for event in events:
         room = event['room'] if event['room'] else '.'
         prof_name = event['teatcher']
-        start_hour = event['heures'][0]
+        start_hour = event['timedelta']['hours']
         size = 1
         event_name = f"{event['subject']}"
 
