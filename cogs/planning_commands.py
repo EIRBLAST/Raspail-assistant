@@ -95,7 +95,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
 
     for i,cours in enumerate(liste_cours):
         # block size
-        size = cours["duration"]["hours"]
+        size = len(cours['heures'])
         
         # bloc color
         colors = {"Physique": "purple" ,"Maths": "green" ,"Anglais": "blue","S2I": "yellow","Français": "pink","Informatique": "cyan","DS": "red","colle":"grey","TIPE":"yellow", "tp": "yellow"}
@@ -127,7 +127,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
 
     # paste courses
     for i,image in enumerate(liste_cours):
-        first_hour = liste_cours[i]["timedelta"]["hours"] - 1
+        first_hour = liste_cours[i]['heures'][0] - 1
         im.paste(liste_image[i] ,(0,Y_LENGHT*(first_hour-7)))
 
     # colles et TP
@@ -137,7 +137,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
     for event in events:
         room = event['room'] if event['room'] else '.'
         prof_name = event['teatcher']
-        start_hour = event['timedelta']['hours']
+        start_hour = event['heures'][0]
         size = 1
         event_name = f"{event['subject']}"
 

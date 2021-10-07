@@ -7,85 +7,43 @@
                     "nom":"Physique",
                     "salle":"C321",
                     "heures":[8,9],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Physique",
                     "salle":"B415",
                     "heures":[10],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B410",
                     "heures":[10],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"pair"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B410",
                     "heures":[11],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 11
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B411",
                     "heures":[13,14],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 13
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Anglais",
                     "salle":"B4XX",
                     "heures":[15],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 15
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Anglais",
                     "salle":"B4XX",
                     "heures":[16],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 16
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"pair"
                 }
             ]
         },
@@ -96,85 +54,43 @@
                     "nom":"Maths",
                     "salle":"B415",
                     "heures":[9],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 9
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Physique",
                     "salle":"C301",
                     "heures":[8,9],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"pair"
                 },
                 {
                     "nom":"Physique",
                     "salle":"C301",
                     "heures":[10,11],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B415",
                     "heures":[10,11],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"pair"
                 },
                 {
                     "nom":"S2I",
                     "salle":"A314",
                     "heures":[14,15],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 14
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"S2I: TD Mr. Gendre",
                     "salle":"A314",
                     "heures":[16,17],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 16
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"S2I: TD Mr. Supper",
                     "salle":"A314",
                     "heures":[16,17],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 16
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"pair"
                 }
             ]
         },
@@ -185,73 +101,37 @@
                     "nom":"Physique",
                     "salle":"C302",
                     "heures":[8],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Français",
                     "salle":"B410",
                     "heures":[9],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 9
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Physique",
                     "salle":"C302",
                     "heures":[10,11],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"pair"
                 },
                 {
                     "nom":"Anglais",
                     "salle":"B403",
                     "heures":[14],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 14
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Français",
                     "salle":"B414",
                     "heures":[14],
-                    "parite":"pair",
-                    "timedelta" : {
-                        "hours": 14
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"pair"
                 },
                 {
                     "nom":"Français",
                     "salle":"B414",
                     "heures":[15],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 15
-                    },
-                    "duration":{
-                        "hours" : 1
-                    }
+                    "parite":"impair"
                 }
             ]
         },
@@ -262,37 +142,19 @@
                     "nom":"Physique",
                     "salle":"B410",
                     "heures":[8,9],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B410",
                     "heures":[10,11],
-                    "parite":"impair",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"impair"
                 },
                 {
                     "nom":"Maths",
                     "salle":"B410",
                     "heures":[14,15],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 14
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 }
             ]
         },
@@ -303,25 +165,13 @@
                     "nom":"Maths",
                     "salle":"B410",
                     "heures":[8,9],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"entier"
                 },
                 {
                     "nom":"Informatique",
                     "salle":"INFO",
                     "heures":[10,11],
-                    "parite":"INFO",
-                    "timedelta" : {
-                        "hours": 10
-                    },
-                    "duration":{
-                        "hours" : 2
-                    }
+                    "parite":"INFO"
                 }
             ]
         },
@@ -332,13 +182,7 @@
                     "nom":"DS",
                     "salle":"",
                     "heures":[8,9,10,11],
-                    "parite":"entier",
-                    "timedelta" : {
-                        "hours": 8
-                    },
-                    "duration":{
-                        "hours" : 4
-                    }
+                    "parite":"entier"
                 }
             ]
         }
