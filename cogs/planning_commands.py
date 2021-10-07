@@ -87,7 +87,7 @@ def get_day_planing(groupe:int,week_parity:int,jour:dict,monday:datetime) -> Ima
 
     # cours
     liste_cours = [cours for cours in jour['cours'] if IsParite(cours['parite'],groupe,week_parity) and cours['nom'] != 'Informatique']
-    if IsParite(informatique_parity(monday),groupe,week_parity) and {"nom":"Informatique","salle":"INFO","heures":[10,11],"parite":"INFO"} in jour['cours']:
+    if IsParite(informatique_parity(monday),groupe,week_parity) and "Informatique" in (cours['nom'] for cours in jour['cours']):
         if informatique_parity(monday) == 'entier': salle = 'B411'
         else : salle = 'B401'
         liste_cours.append({"nom":"Informatique","salle":salle,"heures":[10,11],"parite":"INFO"})
