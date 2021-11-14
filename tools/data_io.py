@@ -68,6 +68,7 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     """
 
     day_index = day.weekday()
+    
     monday = day - timedelta(days=day_index)
     column_index = COLLOSCOPE["mondays"].index(monday.strftime(f"%d/%m/%Y"))
 
@@ -81,25 +82,11 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     # Cours
 
     for c in EDT[day_index]["cours"]:
-        requirements = [
-            IsParite(c["parrity"],grp,get_week_parity(monday))
-        ]
-        if all(requirements): events += c
+
+        if IsParite(c["parite"], grp, get_week_parity(day)):
+            events.append(c)
 
     events.sort(key=lambda line: timedelta(**line["timedelta"]))
-
     return events
 
-def get_color(name: str) -> str:
-    """Return a color corresponding to the subject.
 
-    Args:
-        name (str): Name of the subject.
-
-    Returns:
-        str: The color.
-    """
-    colors = {"Physique": "purple", "Maths": "green", "Anglais": "blue", "S2I": "yellow", "Français": "pink",
-              "Informatique": "cyan", "DS": "red", "colle": "grey", "TIPE": "yellow", "tp": "yellow"}
-
-    return colors.get(name, "grey")
