@@ -1,190 +1,344 @@
-{
-    "edt":[
-        {
-            "jour":0,
-            "cours":[
-                {
-                    "nom":"Physique",
-                    "salle":"C321",
-                    "heures":[8,9],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Physique",
-                    "salle":"B415",
-                    "heures":[10],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B410",
-                    "heures":[10],
-                    "parite":"pair"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B410",
-                    "heures":[11],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B411",
-                    "heures":[13,14],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Anglais",
-                    "salle":"B4XX",
-                    "heures":[15],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Anglais",
-                    "salle":"B4XX",
-                    "heures":[16],
-                    "parite":"pair"
-                }
-            ]
+[
+  {
+    "jour" : 0,
+    "cours" : [
+      {
+        "nom" : "Physique-Chimie - Cours",
+        "salle" : "C321",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 8
         },
-        {
-            "jour":1,
-            "cours":[
-                {
-                    "nom":"Maths",
-                    "salle":"B415",
-                    "heures":[9],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Physique",
-                    "salle":"C301",
-                    "heures":[8,9],
-                    "parite":"pair"
-                },
-                {
-                    "nom":"Physique",
-                    "salle":"C301",
-                    "heures":[10,11],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B415",
-                    "heures":[10,11],
-                    "parite":"pair"
-                },
-                {
-                    "nom":"S2I",
-                    "salle":"A314",
-                    "heures":[14,15],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"S2I: TD Mr. Gendre",
-                    "salle":"A314",
-                    "heures":[16,17],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"S2I: TD Mr. Supper",
-                    "salle":"A314",
-                    "heures":[16,17],
-                    "parite":"pair"
-                }
-            ]
-        },
-        {
-            "jour":2,
-            "cours":[
-                {
-                    "nom":"Physique",
-                    "salle":"C302",
-                    "heures":[8],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Français",
-                    "salle":"B410",
-                    "heures":[9],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Physique",
-                    "salle":"C302",
-                    "heures":[10,11],
-                    "parite":"pair"
-                },
-                {
-                    "nom":"Anglais",
-                    "salle":"B403",
-                    "heures":[14],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Français",
-                    "salle":"B414",
-                    "heures":[14],
-                    "parite":"pair"
-                },
-                {
-                    "nom":"Français",
-                    "salle":"B414",
-                    "heures":[15],
-                    "parite":"impair"
-                }
-            ]
-        },
-        {
-            "jour":3,
-            "cours":[
-                {
-                    "nom":"Physique",
-                    "salle":"B410",
-                    "heures":[8,9],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B410",
-                    "heures":[10,11],
-                    "parite":"impair"
-                },
-                {
-                    "nom":"Maths",
-                    "salle":"B410",
-                    "heures":[14,15],
-                    "parite":"entier"
-                }
-            ]
-        },
-        {
-            "jour":4,
-            "cours":[
-                {
-                    "nom":"Maths",
-                    "salle":"B410",
-                    "heures":[8,9],
-                    "parite":"entier"
-                },
-                {
-                    "nom":"Informatique",
-                    "salle":"INFO",
-                    "heures":[10,11],
-                    "parite":"INFO"
-                }
-            ]
-        },
-        {
-            "jour":5,
-            "cours":[
-                {
-                    "nom":"DS",
-                    "salle":"",
-                    "heures":[8,9,10,11],
-                    "parite":"entier"
-                }
-            ]
+        "duration" : {
+          "hours" : 2
         }
+      },
+      {
+        "nom" : "Physique-Chimie - TD",
+        "salle" : "B415",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Maths - TD",
+        "salle" : "B410",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Maths - Cours",
+        "salle" : "B410",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 11
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Maths - Cours",
+        "salle" : "B411",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 13
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Anglais - Cours",
+        "salle" : "B4XX",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 15
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Anglais - TD",
+        "salle" : "B4XX",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 0,
+          "hours" : 16
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      }
     ]
-}
+  },
+  {
+    "jour" : 1,
+    "cours" : [
+      {
+        "nom" : "Maths - TD",
+        "salle" : "B415",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 9
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Physique-Chimie - TP",
+        "salle" : "C301",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 8
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Physique-Chimie - TP",
+        "salle" : "C301",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Maths - TD",
+        "salle" : "B415",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "S2I - Cours",
+        "salle" : "A314",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 14
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "S2I - TD avec Mr. Gendre",
+        "salle" : "A314",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 16
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "S2I - TD avec Mr. Supper",
+        "salle" : "A314",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 1,
+          "hours" : 16
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      }
+    ]
+  },
+  {
+    "jour" : 2,
+    "cours" : [
+      {
+        "nom" : "Physique-Chimie",
+        "salle" : "C302",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 8
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Français",
+        "salle" : "B410",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 9
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Physique-Chimie",
+        "salle" : "C302",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Anglais",
+        "salle" : "B403",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 14
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Français",
+        "salle" : "B414",
+        "parite" : "pair",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 14
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      },
+      {
+        "nom" : "Français",
+        "salle" : "B414",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 2,
+          "hours" : 15
+        },
+        "duration" : {
+          "hours" : 1
+        }
+      }
+    ]
+  },
+  {
+    "jour" : 3,
+    "cours" : [
+      {
+        "nom" : "Physique-Chimie",
+        "salle" : "B410",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 3,
+          "hours" : 8
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Maths",
+        "salle" : "B410",
+        "parite" : "impair",
+        "timedelta" : {
+          "days" : 3,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Maths",
+        "salle" : "B410",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 3,
+          "hours" : 14
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      }
+    ]
+  },
+  {
+    "jour" : 4,
+    "cours" : [
+      {
+        "nom" : "Maths",
+        "salle" : "B410",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 3,
+          "hours" : 8
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      },
+      {
+        "nom" : "Informatique - {informatique_event_type}",
+        "salle" : "{informatique_salle}",
+        "parite" : "{parite_informatique}",
+        "timedelta" : {
+          "days" : 3,
+          "hours" : 10
+        },
+        "duration" : {
+          "hours" : 2
+        }
+      }
+    ]
+  },
+  {
+    "jour" : 5,
+    "cours" : [
+      {
+        "nom" : "DS",
+        "salle" : "",
+        "parite" : "entier",
+        "timedelta" : {
+          "days" : 5,
+          "hours" : 8
+        },
+        "duration" : {
+          "hours" : 4
+        }
+      }
+    ]
+  }
+]
