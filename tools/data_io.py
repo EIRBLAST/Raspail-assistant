@@ -72,6 +72,12 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     monday = day - timedelta(days=day_index)
     column_index = COLLOSCOPE["mondays"].index(monday.strftime(f"%d/%m/%Y"))
 
+    context = {
+        "parite_informatique": informatique_parity(day),
+        "informatique_event_type": 'cours' if informatique_parity(day) == 'A' else 'TP',
+        "informatique_salle": 'B4**' if informatique_parity(day) == 'A' else 'B4**'
+    }
+
     # Colles & TP
 
     events = []
@@ -84,6 +90,9 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     for c in EDT[day_index]["cours"]:
 
         if IsParite(c["parite"], grp, get_week_parity(day)):
+            c["nom"] = (c["nom"]).format(**context)
+            c["salle"] = (c["salle"]).format(**context)
+            c["parite"] = (c["parite"]).format(**context)
             events.append(c)
 
     events.sort(key=lambda line: timedelta(**line["timedelta"]))
