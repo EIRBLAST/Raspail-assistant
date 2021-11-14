@@ -9,8 +9,8 @@ def get_color(name: str) -> str:
     Returns:
         str: The color as html color code.
     """
-    colors = {"Physique-Chimie": "Thistle", "Maths": "PaleGreen", "Anglais": "PowderBlue", "S2I": "LemonChiffon", "Français": "LightPink",
-              "Informatique": "LightCyan", "DS": "red", "colle": "grey", "TIPE": "Tan", "tp": "LemonChiffon"}
+    colors = {"physique-chimie": "thistle", "maths": "PaleGreen", "anglais": "PowderBlue", "s2i": "LemonChiffon", "français": "LightPink",
+              "informatique": "LightCyan", "ds": "red", "colle": "grey", "tipe": "Tan", "tp": "LemonChiffon"}
 
     return colors.get(name, "#D5D8DC")
 
