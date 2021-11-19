@@ -14,6 +14,7 @@ from discord_slash.utils.manage_components import (create_actionrow,
 from class_file import *
 from tools import data_io
 from tools import timetable
+import tools
 
 class PlanningCommands(commands.Cog):
     def __init__(self, client:RaspailAssistant):
@@ -43,10 +44,19 @@ class PlanningCommands(commands.Cog):
             events = data_io.get_events_of_the_day(monday + datetime.timedelta(days=day), user_grp)
             blocks = []
             for event in events:
+                lines = []
 
-                lines = [
+                if event.get("subject", ""):
+                    lines += [
+                        {
+                            "content": "Colle",
+                            "font": "bold",
+                            "align": ""
+                        } 
+                    ]
+                lines += [
                     {
-                        "content": event.get("nom", "") or event.get("subject", ""),
+                        "content": (event.get("nom", "") or event.get("subject", "")).capitalize(),
                         "font": "bold",
                         "align": ""
                     },
@@ -68,7 +78,7 @@ class PlanningCommands(commands.Cog):
                 color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
                 blocks.append(timetable_I.generate_block(lines, height, color))
             
-            colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events]))
+            colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], header = tools.data_io.DAYS[day]))
 
 
         # Generate the image
@@ -81,6 +91,67 @@ class PlanningCommands(commands.Cog):
         file = discord.File(buffer_output, 'edt.png')
         #send the file
         await ctx.send(content=f"Voila pour toi l'edt du groupe {user_grp} :) !",file=file)
+
+    @cog_ext.cog_slash(name="now",description='T\'envoie le planning de chaque groupe ',guild_ids= [879451596247933039])
+    async def send_planning_now(self,ctx:SlashContext):
+        nb_of_groups = 12
+        today = datetime.date.today()
+        events_of_grp = lambda i: data_io.get_events_of_the_day(today, i)
+        timetable_I = timetable.timtable_imager(timetable_dimention_width = nb_of_groups)
+
+        columns = []
+        for grp in range(1,nb_of_groups+1):
+            events = events_of_grp(grp)
+            blocks = []
+            for event in events:
+                lines = []
+
+                if event.get("subject", ""):
+                    lines += [
+                    {
+                        "content": "Colle",
+                        "font": "bold",
+                        "align": ""
+                    } 
+
+                    ]
+
+                lines += [
+                    {
+                        "content": (event.get("nom", "") or event.get("subject", "")).capitalize(),
+                        "font": "bold",
+                        "align": ""
+                    },
+                    {
+                        "content": event.get("salle","") or event.get("salle","") or "salle inconue",
+                        "font": "regular",
+                        "align": ""
+                    }
+                ]
+
+                if event.get("teatcher", ""):
+                    lines.append({
+                        "content": event.get("teatcher", ""),
+                        "font": "regular",
+                        "align": ""
+                    })
+                
+                height =  event["duration"]["hours"]
+                color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
+                blocks.append(timetable_I.generate_block(lines, height, color))
+            
+            columns.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], "Groupe: " + str(grp)))
+
+
+
+        img = timetable_I.generate_timetable(columns)
+        #send the planning
+        buffer_output = io.BytesIO()
+        img.save(buffer_output, format='PNG')
+        buffer_output.seek(0)
+        file = discord.File(buffer_output, 'edt.png')
+        #send the file
+        await ctx.send(content=f"Voila pour toi voici l'emploie du temps d'aujourd'hui ({today.strftime('%d/%m/%Y')}) :) !",file=file)
     
 
     @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploie du temps et coloscope en version papier.',guild_ids= [879451596247933039])
