@@ -20,7 +20,6 @@ def get_week_parity(day: datetime.date) -> int:
 
     return COLLOSCOPE["weeknumber"][column_index] % 2
 
-
 def informatique_parity(day: datetime.date) -> str:
     """Return rotation of informatique of the given day/week.
 
@@ -33,8 +32,8 @@ def informatique_parity(day: datetime.date) -> str:
     monday = day - timedelta(days=day.weekday())
     column_index = COLLOSCOPE["mondays"].index(monday.strftime("%d/%m/%Y"))
     res = COLLOSCOPE["informatique"][column_index]
+    
     return 'pair'*(res == 'B') + 'impair'*(res == 'A') + 'entier'*(res == 'C')
-
 
 def IsParite(parite: str, group_number: int, week_parite: int) -> bool:
     """This function compute if the group attend the course.
@@ -74,8 +73,8 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
 
     context = {
         "parite_informatique": informatique_parity(day),
-        "informatique_event_type": 'cours' if informatique_parity(day) == 'A' else 'TP',
-        "informatique_salle": 'B4**' if informatique_parity(day) == 'A' else 'B4**'
+        "informatique_event_type": 'cours' if informatique_parity(day) == 'entier' else 'TP',
+        "informatique_salle": 'B4**' if informatique_parity(day) == 'entier' else 'B4**'
     }
 
     # Colles & TP
