@@ -74,23 +74,24 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     context = {
         "parite_informatique": informatique_parity(day),
         "informatique_event_type": 'cours' if informatique_parity(day) == 'entier' else 'TP',
-        "informatique_salle": 'B4**' if informatique_parity(day) == 'entier' else 'B4**'
+        "informatique_room": 'B4**' if informatique_parity(day) == 'entier' else 'B4**'
     }
 
     # Colles & TP
 
     events = []
-    for line in COLLOSCOPE["planning"]:
+    for line in COLLOSCOPE["planning-colles"] + COLLOSCOPE["planning-rotations"]:
         if line["grps"][column_index] == int(grp) and line["timedelta"]["days"] == day_index:
             events.append(line)
+    
 
     # Cours
 
     for c in EDT[day_index]["cours"]:
 
         if IsParite(c["parite"], grp, get_week_parity(day)):
-            c["nom"] = (c["nom"]).format(**context)
-            c["salle"] = (c["salle"]).format(**context)
+            c["subject"] = (c["subject"]).format(**context)
+            c["room"] = (c["room"]).format(**context)
             c["parite"] = (c["parite"]).format(**context)
             events.append(c)
 

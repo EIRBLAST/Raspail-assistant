@@ -3,8 +3,8 @@
     "jour" : 0,
     "cours" : [
       {
-        "nom" : "Physique-Chimie - Cours",
-        "salle" : "C321",
+        "subject" : "Physique-Chimie - Cours",
+        "room" : "C321",
         "parite" : "entier",
         "timedelta" : {
           "days" : 0,
@@ -12,11 +12,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Physique-Chimie - TD",
-        "salle" : "B415",
+        "subject" : "Physique-Chimie - TD",
+        "room" : "B415",
         "parite" : "impair",
         "timedelta" : {
           "days" : 0,
@@ -24,11 +25,12 @@
         },
         "duration" : {
           "hours" : 1
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Maths - TD",
-        "salle" : "B410",
+        "subject" : "Maths - TD",
+        "room" : "B410",
         "parite" : "pair",
         "timedelta" : {
           "days" : 0,
@@ -39,8 +41,8 @@
         }
       },
       {
-        "nom" : "Maths - Cours",
-        "salle" : "B410",
+        "subject" : "Maths - Cours",
+        "room" : "B410",
         "parite" : "entier",
         "timedelta" : {
           "days" : 0,
@@ -51,8 +53,8 @@
         }
       },
       {
-        "nom" : "Maths - Cours",
-        "salle" : "B411",
+        "subject" : "Maths - Cours",
+        "room" : "B411",
         "parite" : "entier",
         "timedelta" : {
           "days" : 0,
@@ -63,8 +65,8 @@
         }
       },
       {
-        "nom" : "Anglais - Cours",
-        "salle" : "B4XX",
+        "subject" : "Anglais - Cours",
+        "room" : "B4XX",
         "parite" : "entier",
         "timedelta" : {
           "days" : 0,
@@ -75,8 +77,8 @@
         }
       },
       {
-        "nom" : "Anglais - TD",
-        "salle" : "B4XX",
+        "subject" : "Anglais - TD",
+        "room" : "B4XX",
         "parite" : "pair",
         "timedelta" : {
           "days" : 0,
@@ -92,8 +94,8 @@
     "jour" : 1,
     "cours" : [
       {
-        "nom" : "Maths - TD",
-        "salle" : "B415",
+        "subject" : "Maths - TD",
+        "room" : "B415",
         "parite" : "impair",
         "timedelta" : {
           "days" : 1,
@@ -104,8 +106,8 @@
         }
       },
       {
-        "nom" : "Physique-Chimie - TP",
-        "salle" : "C301",
+        "subject" : "Physique-Chimie - TP",
+        "room" : "C301",
         "parite" : "pair",
         "timedelta" : {
           "days" : 1,
@@ -113,11 +115,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Physique-Chimie - TP",
-        "salle" : "C301",
+        "subject" : "Physique-Chimie - TP",
+        "room" : "C301",
         "parite" : "impair",
         "timedelta" : {
           "days" : 1,
@@ -125,11 +128,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Maths - TD",
-        "salle" : "B415",
+        "subject" : "Maths - TD",
+        "room" : "B415",
         "parite" : "pair",
         "timedelta" : {
           "days" : 1,
@@ -140,8 +144,8 @@
         }
       },
       {
-        "nom" : "S2I - Cours",
-        "salle" : "A314",
+        "subject" : "S2I - Cours",
+        "room" : "A314",
         "parite" : "entier",
         "timedelta" : {
           "days" : 1,
@@ -149,11 +153,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Gendre"
       },
       {
-        "nom" : "S2I - TD avec Mr. Gendre",
-        "salle" : "A314",
+        "subject" : "S2I - TD",
+        "room" : "A314",
         "parite" : "impair",
         "timedelta" : {
           "days" : 1,
@@ -161,11 +166,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Gendre"
       },
       {
-        "nom" : "S2I - TD avec Mr. Supper",
-        "salle" : "A314",
+        "subject" : "S2I - TD",
+        "room" : "A314",
         "parite" : "pair",
         "timedelta" : {
           "days" : 1,
@@ -173,7 +179,8 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Supper"
       }
     ]
   },
@@ -181,8 +188,8 @@
     "jour" : 2,
     "cours" : [
       {
-        "nom" : "Physique-Chimie",
-        "salle" : "C302",
+        "subject" : "Physique-Chimie",
+        "room" : "C302",
         "parite" : "impair",
         "timedelta" : {
           "days" : 2,
@@ -190,11 +197,12 @@
         },
         "duration" : {
           "hours" : 1
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Français",
-        "salle" : "B410",
+        "subject" : "Français",
+        "room" : "B410",
         "parite" : "entier",
         "timedelta" : {
           "days" : 2,
@@ -205,8 +213,8 @@
         }
       },
       {
-        "nom" : "Physique-Chimie",
-        "salle" : "C302",
+        "subject" : "Physique-Chimie",
+        "room" : "C302",
         "parite" : "pair",
         "timedelta" : {
           "days" : 2,
@@ -214,11 +222,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Anglais",
-        "salle" : "B403",
+        "subject" : "Anglais",
+        "room" : "B403",
         "parite" : "impair",
         "timedelta" : {
           "days" : 2,
@@ -229,8 +238,8 @@
         }
       },
       {
-        "nom" : "Français",
-        "salle" : "B414",
+        "subject" : "Français",
+        "room" : "B414",
         "parite" : "pair",
         "timedelta" : {
           "days" : 2,
@@ -241,8 +250,8 @@
         }
       },
       {
-        "nom" : "Français",
-        "salle" : "B414",
+        "subject" : "Français",
+        "room" : "B414",
         "parite" : "impair",
         "timedelta" : {
           "days" : 2,
@@ -258,8 +267,8 @@
     "jour" : 3,
     "cours" : [
       {
-        "nom" : "Physique-Chimie",
-        "salle" : "B410",
+        "subject" : "Physique-Chimie",
+        "room" : "B410",
         "parite" : "entier",
         "timedelta" : {
           "days" : 3,
@@ -267,11 +276,12 @@
         },
         "duration" : {
           "hours" : 2
-        }
+        },
+        "teatcher":"Mr. Cizare"
       },
       {
-        "nom" : "Maths",
-        "salle" : "B410",
+        "subject" : "Maths",
+        "room" : "B410",
         "parite" : "impair",
         "timedelta" : {
           "days" : 3,
@@ -282,8 +292,8 @@
         }
       },
       {
-        "nom" : "Maths",
-        "salle" : "B410",
+        "subject" : "Maths",
+        "room" : "B410",
         "parite" : "entier",
         "timedelta" : {
           "days" : 3,
@@ -299,8 +309,8 @@
     "jour" : 4,
     "cours" : [
       {
-        "nom" : "Maths",
-        "salle" : "B410",
+        "subject" : "Maths",
+        "room" : "B410",
         "parite" : "entier",
         "timedelta" : {
           "days" : 3,
@@ -311,8 +321,8 @@
         }
       },
       {
-        "nom" : "Informatique - {informatique_event_type}",
-        "salle" : "{informatique_salle}",
+        "subject" : "Informatique - {informatique_event_type}",
+        "room" : "{informatique_room}",
         "parite" : "{parite_informatique}",
         "timedelta" : {
           "days" : 3,
@@ -328,8 +338,8 @@
     "jour" : 5,
     "cours" : [
       {
-        "nom" : "DS",
-        "salle" : "",
+        "subject" : "DS",
+        "room" : "",
         "parite" : "entier",
         "timedelta" : {
           "days" : 5,

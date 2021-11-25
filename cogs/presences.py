@@ -1,15 +1,16 @@
+import json
+import random
+
 import discord
 from discord.ext import commands, tasks
-import random 
-import json
+
 
 class Presence(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.sentenses = json.load(open("datas/presence_sentenses.json", "r"))
         self.update_presence.start()
-        print("Presence updater inir")
-    
+        print("[Presence]: Updater init")
     
     @tasks.loop(seconds=10)
     async def update_presence(self):
@@ -18,7 +19,7 @@ class Presence(commands.Cog):
     
     @update_presence.before_loop
     async def before_update(self):
-        print('waiting for client to load ...')
+        print('[Presence]: Waiting for client to loads ...')
         await self.client.wait_until_ready()
 
     def cog_unload(self):

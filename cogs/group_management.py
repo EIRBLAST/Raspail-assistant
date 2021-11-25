@@ -1,13 +1,20 @@
 import discord
-from class_file import *
 from discord.ext import commands
-from discord_slash import SlashCommand , cog_ext, SlashContext ,ComponentContext
-from discord_slash.utils.manage_components import create_select,create_button, create_select_option, create_actionrow,wait_for_component
+from discord_slash import ComponentContext, SlashCommand, SlashContext, cog_ext
 from discord_slash.model import ButtonStyle
+from discord_slash.utils.manage_components import (create_actionrow,
+                                                   create_button,
+                                                   create_select,
+                                                   create_select_option,
+                                                   wait_for_component)
+
+from class_file import *
 
 class GroupSelect(commands.Cog):
     def __init__(self, client:RaspailAssistant):
         self.client = client
+
+        # TODO: Find a way to get the group id more dynamically
         self.numbers =[   client.get_emoji(838150929261658183) #1
             ,client.get_emoji(838150930385600563) #2
             ,client.get_emoji(838150932466106378) #3
@@ -38,7 +45,7 @@ class GroupSelect(commands.Cog):
             886513351788728350, #group 13
         ]
 
-    @cog_ext.cog_slash(name="groupe",description='te permet de selectionner ton groupe de colle',guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="groupe",description='Te permet de selectionner ton groupe de colle',guild_ids= [879451596247933039])
     async def group_(self,ctx:SlashContext):
         def check(context:ComponentContext):
             return ctx.author == context.author

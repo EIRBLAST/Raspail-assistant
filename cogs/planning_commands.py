@@ -44,24 +44,19 @@ class PlanningCommands(commands.Cog):
             events = data_io.get_events_of_the_day(monday + datetime.timedelta(days=day), user_grp)
             blocks = []
             for event in events:
-                lines = []
+                if event.get("type", "") == "colle":
+                    color =  "grey"
+                else:
+                    color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
 
-                if event.get("subject", ""):
-                    lines += [
-                        {
-                            "content": "Colle",
-                            "font": "bold",
-                            "align": ""
-                        } 
-                    ]
-                lines += [
+                lines = [
                     {
-                        "content": (event.get("nom", "") or event.get("subject", "")).capitalize(),
+                        "content": event.get("subject", "").upper(),
                         "font": "bold",
                         "align": ""
                     },
                     {
-                        "content": event.get("salle","") or event.get("salle","") or "salle inconue",
+                        "content": event.get("room","") or "salle inconue",
                         "font": "regular",
                         "align": ""
                     }
@@ -75,10 +70,9 @@ class PlanningCommands(commands.Cog):
                     })
                 
                 height =  event["duration"]["hours"]
-                color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
+                
                 blocks.append(timetable_I.generate_block(lines, height, color))
-            
-            colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], header = tools.data_io.DAYS[day]))
+            colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], header = data_io.DAYS[day]))
 
 
         # Generate the image
@@ -96,6 +90,11 @@ class PlanningCommands(commands.Cog):
     async def send_planning_now(self,ctx:SlashContext):
         nb_of_groups = 12
         today = datetime.date.today()
+
+        if today.weekday() < 5:
+            await ctx.send(content="Tu es en weekend, tu ne peux pas faire ça :).")
+            return 
+
         events_of_grp = lambda i: data_io.get_events_of_the_day(today, i)
         timetable_I = timetable.timtable_imager(timetable_dimention_width = nb_of_groups)
 
@@ -104,26 +103,20 @@ class PlanningCommands(commands.Cog):
             events = events_of_grp(grp)
             blocks = []
             for event in events:
-                lines = []
 
-                if event.get("subject", ""):
-                    lines += [
+                if event.get("type", "") == "colle":
+                    color =  "grey"
+                else:
+                    color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
+
+                lines = [
                     {
-                        "content": "Colle",
-                        "font": "bold",
-                        "align": ""
-                    } 
-
-                    ]
-
-                lines += [
-                    {
-                        "content": (event.get("nom", "") or event.get("subject", "")).capitalize(),
+                        "content": event.get("subject", "").upper(),
                         "font": "bold",
                         "align": ""
                     },
                     {
-                        "content": event.get("salle","") or event.get("salle","") or "salle inconue",
+                        "content": event.get("room","") or "salle inconue",
                         "font": "regular",
                         "align": ""
                     }
@@ -137,11 +130,10 @@ class PlanningCommands(commands.Cog):
                     })
                 
                 height =  event["duration"]["hours"]
-                color =  timetable.get_color(event.get("nom", event.get("subject", "")).split(" - ")[0].lower())
+                
                 blocks.append(timetable_I.generate_block(lines, height, color))
             
             columns.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], "Groupe: " + str(grp)))
-
 
 
         img = timetable_I.generate_timetable(columns)
@@ -168,8 +160,6 @@ def setup(bot:RaspailAssistant):
 """
 TODOLIST:
 
-TODO: /now Renvoie pour chaque grp le cours actuel
-TODO: /today Renvoie le planning du jour
 TODO: /dashboard -> envoie un lien vers une app heroku qui donne l'edt en fontion d'une date choisie + planning de colle maths & physique.
 TODO: Presence <-- 
 """
