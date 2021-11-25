@@ -91,7 +91,7 @@ class PlanningCommands(commands.Cog):
         nb_of_groups = 12
         today = datetime.date.today()
 
-        if today.weekday() < 5:
+        if today.weekday() > 4:
             await ctx.send(content="Tu es en weekend, tu ne peux pas faire ça :).")
             return 
 
