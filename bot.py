@@ -1,6 +1,5 @@
 from class_file import *
 from discord_slash import SlashCommand
-import threading
 
 
 TOKEN = os.environ['TOKEN']

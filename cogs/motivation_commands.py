@@ -1,8 +1,15 @@
 from datetime import date, datetime, timedelta
 
 import humanize
+import discord
 from discord.ext import commands
 from discord_slash import ComponentContext, SlashCommand, SlashContext, cog_ext
+from discord_slash.model import ButtonStyle
+from discord_slash.utils.manage_components import (create_actionrow,
+                                                   create_button,
+                                                   create_select,
+                                                   create_select_option,
+                                                   wait_for_component)
 
 from tools import data_io
 
@@ -25,7 +32,7 @@ def generate_progress_bar(perecent):
     return full * full_count + blanck * blanck_count
 
 class MotivationCommands(commands.Cog):
-    def __init__(self, client:RaspailAssistant):
+    def __init__(self, client):
         self.client = client
 
     @cog_ext.cog_slash(name="motivation",description='Te motive (parceque on en a tous besoin', guild_ids= [879451596247933039])
@@ -40,5 +47,5 @@ class MotivationCommands(commands.Cog):
 
         await ctx.send(content=m)
 
-def setup(bot:RaspailAssistant):
+def setup(bot):
     bot.add_cog(MotivationCommands(bot))
