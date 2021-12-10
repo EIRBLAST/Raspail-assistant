@@ -8,10 +8,10 @@ from tools import data_io
 
 
 dates = [
-        "cesi" : [datetime.strptime("06/04/2022", "%d/%m/%Y"), datetime.strptime("06/04/2022")],
-        "EPITA / IPSA / ESME" : [datetime.strptime("09/04/2022"), datetime.strptime("09/04/2022")],
-        "Centrale-Supélec": [datetime.strptime("03/05/2022"), datetime.strptime("06/05/2022")],
-        "CCINP": [datetime.strptime("09/05/2022"), datetime.strptime("13/05/2022")]
+        "cesi" : [datetime.strptime("06/04/2022", "%d/%m/%Y"), datetime.strptime("06/04/2022", "%d/%m/%Y")],
+        "EPITA / IPSA / ESME" : [datetime.strptime("09/04/2022", "%d/%m/%Y"), datetime.strptime("09/04/2022", "%d/%m/%Y")],
+        "Centrale-Supélec": [datetime.strptime("03/05/2022", "%d/%m/%Y"), datetime.strptime("06/05/2022", "%d/%m/%Y")],
+        "CCINP": [datetime.strptime("09/05/2022", "%d/%m/%Y"), datetime.strptime("13/05/2022", "%d/%m/%Y")]
 ]
 
 
@@ -35,7 +35,7 @@ class MotivationCommands(commands.Cog):
             if date.today() < dates[concours][1]:
                 m += "\n\t- " + concours + ": "  +  humanize.naturaltime(dates[concours][1] - datetime.now())
         
-        p = (datetime.strptime("02/09/2021") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021"))
+        p = (datetime.strptime("02/09/2021") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021", "%d/%m/%Y"))
         m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100}%"
 
         await ctx.send(content=m)
