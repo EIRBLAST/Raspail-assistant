@@ -15,18 +15,22 @@ from tools import data_io
 
 
 dates = {
-        "cesi" : [datetime.strptime("06/04/2022", "%d/%m/%Y"), datetime.strptime("06/04/2022", "%d/%m/%Y")],
+        "CESI" : [datetime.strptime("06/04/2022", "%d/%m/%Y"), datetime.strptime("06/04/2022", "%d/%m/%Y")],
         "EPITA / IPSA / ESME" : [datetime.strptime("09/04/2022", "%d/%m/%Y"), datetime.strptime("09/04/2022", "%d/%m/%Y")],
         "Centrale-Supélec": [datetime.strptime("03/05/2022", "%d/%m/%Y"), datetime.strptime("06/05/2022", "%d/%m/%Y")],
         "CCINP": [datetime.strptime("09/05/2022", "%d/%m/%Y"), datetime.strptime("13/05/2022", "%d/%m/%Y")]
 }
 
 
+humanize.i18n.activate('fr')
+
+
 def generate_progress_bar(perecent):
     full = "⬛"
     blanck = "⬜"
 
-    full_count = int(perecent * 10)
+    full_count = round(perecent)// 10
+    print(full_count)
     blanck_count = 10 - full_count
 
     return full * full_count + blanck * blanck_count
@@ -40,10 +44,10 @@ class MotivationCommands(commands.Cog):
         m = "Voici le contdown jusqu'aux différents concours"
         for concours in dates.keys():
             if datetime.now() < dates[concours][1]:
-                m += "\n\t- " + concours + ": "  +  humanize.naturaltime(dates[concours][1] - datetime.now())
+                m += "\n\t- " + concours + ": "  +  humanize.precisedelta(dates[concours][1] - datetime.now(), minimum_unit="minutes")
         
-        p = (datetime.strptime("02/09/2021", "%d/%m/%Y") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021", "%d/%m/%Y"))
-        m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100}%"
+        p = (datetime.strptime("02/09/2021", "%d/%m/%Y") - datetime.now()).total_seconds() / (datetime.strptime("02/09/2021", "%d/%m/%Y") - dates["CCINP"][1]).total_seconds()
+        m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100:.2f}%"
 
         await ctx.send(content=m)
 
