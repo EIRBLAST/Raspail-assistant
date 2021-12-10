@@ -154,12 +154,3 @@ class PlanningCommands(commands.Cog):
         
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
-    
-    
-
-"""
-TODOLIST:
-
-TODO: /dashboard -> envoie un lien vers une app heroku qui donne l'edt en fontion d'une date choisie + planning de colle maths & physique.
-TODO: Presence <-- 
-"""

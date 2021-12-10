@@ -29,7 +29,7 @@ class MotivationCommands(commands.Cog):
         self.client = client
 
     @cog_ext.cog_slash(name="motivation",description='Te motive (parceque on en a tous besoin', guild_ids= [879451596247933039])
-    async def send_planning(self,ctx:SlashContext):
+    async def send_motivation(self,ctx:SlashContext):
         m = "Voici le contdown jusqu'aux différents concours"
         for concours in dates.keys():
             if date.today() < dates[concours][1]:
