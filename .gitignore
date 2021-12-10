@@ -2,3 +2,4 @@
 Dockerfile
 .vscode
 **/__pycache__/**
+.env

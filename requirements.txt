@@ -6,3 +6,4 @@ aioredis==2.0.0b1
 async-timeout
 asyncio
 discord-py-interactions
+humanize
