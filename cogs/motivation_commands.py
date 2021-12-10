@@ -39,7 +39,7 @@ class MotivationCommands(commands.Cog):
     async def send_motivation(self,ctx:SlashContext):
         m = "Voici le contdown jusqu'aux différents concours"
         for concours in dates.keys():
-            if date.today() < dates[concours][1]:
+            if datetime.now() < dates[concours][1]:
                 m += "\n\t- " + concours + ": "  +  humanize.naturaltime(dates[concours][1] - datetime.now())
         
         p = (datetime.strptime("02/09/2021") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021", "%d/%m/%Y"))
