@@ -7,12 +7,12 @@ from discord_slash import ComponentContext, SlashCommand, SlashContext, cog_ext
 from tools import data_io
 
 
-dates = [
+dates = {
         "cesi" : [datetime.strptime("06/04/2022", "%d/%m/%Y"), datetime.strptime("06/04/2022", "%d/%m/%Y")],
         "EPITA / IPSA / ESME" : [datetime.strptime("09/04/2022", "%d/%m/%Y"), datetime.strptime("09/04/2022", "%d/%m/%Y")],
         "Centrale-Supélec": [datetime.strptime("03/05/2022", "%d/%m/%Y"), datetime.strptime("06/05/2022", "%d/%m/%Y")],
         "CCINP": [datetime.strptime("09/05/2022", "%d/%m/%Y"), datetime.strptime("13/05/2022", "%d/%m/%Y")]
-]
+}
 
 
 def generate_progress_bar(perecent):
