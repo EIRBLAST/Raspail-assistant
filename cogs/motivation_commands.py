@@ -24,7 +24,7 @@ def generate_progress_bar(perecent):
 
     return full * full_count + blanck * blanck_count
 
-class PlanningCommands(commands.Cog):
+class MotivationCommands(commands.Cog):
     def __init__(self, client:RaspailAssistant):
         self.client = client
 
@@ -39,3 +39,6 @@ class PlanningCommands(commands.Cog):
         m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100}%"
 
         await ctx.send(content=m)
+
+def setup(bot:RaspailAssistant):
+    bot.add_cog(MotivationCommands(bot))
