@@ -35,14 +35,14 @@ class MotivationCommands(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @cog_ext.cog_slash(name="motivation",description='Te motive (parceque on en a tous besoin', guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="motivation",description='Te motive (parceque on en a tous besoin)', guild_ids= [879451596247933039])
     async def send_motivation(self,ctx:SlashContext):
         m = "Voici le contdown jusqu'aux différents concours"
         for concours in dates.keys():
             if datetime.now() < dates[concours][1]:
                 m += "\n\t- " + concours + ": "  +  humanize.naturaltime(dates[concours][1] - datetime.now())
         
-        p = (datetime.strptime("02/09/2021") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021", "%d/%m/%Y"))
+        p = (datetime.strptime("02/09/2021", "%d/%m/%Y") - datetime.now()).days / (dates["CCINP"][1] - datetime.strptime("02/09/2021", "%d/%m/%Y"))
         m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100}%"
 
         await ctx.send(content=m)
