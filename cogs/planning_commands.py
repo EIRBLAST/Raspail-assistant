@@ -28,6 +28,7 @@ class PlanningCommands(commands.Cog):
             return
         today = datetime.date.today()
         user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
+        user_role_mentionner = filter(lambda r: r.name == "Groupe "+ str(user_grp), ctx.channel.guild.roles )[0].mention
 
         if today.weekday() < 5:
             monday = today - datetime.timedelta(days = today.weekday())
@@ -84,7 +85,7 @@ class PlanningCommands(commands.Cog):
         buffer_output.seek(0)
         file = discord.File(buffer_output, 'edt.png')
         #send the file
-        await ctx.send(content=f"Voila pour toi l'edt du groupe {user_grp} :) !",file=file)
+        await ctx.send(content=f"Voila pour toi l'edt du {user_role_mentionner} :) !",file=file)
 
     @cog_ext.cog_slash(name="now",description='T\'envoie le planning de chaque groupe ',guild_ids= [879451596247933039])
     async def send_planning_now(self,ctx:SlashContext):
@@ -94,6 +95,7 @@ class PlanningCommands(commands.Cog):
         if today.weekday() > 4:
             await ctx.send(content="Tu es en weekend, tu ne peux pas faire ça :).")
             return 
+
 
         events_of_grp = lambda i: data_io.get_events_of_the_day(today, i)
         timetable_I = timetable.timtable_imager(timetable_dimention_width = nb_of_groups)
@@ -143,10 +145,10 @@ class PlanningCommands(commands.Cog):
         buffer_output.seek(0)
         file = discord.File(buffer_output, 'edt.png')
         #send the file
-        await ctx.send(content=f"Voila pour toi voici l'emploie du temps d'aujourd'hui ({today.strftime('%d/%m/%Y')}) :) !",file=file)
+        await ctx.send(content=f"Voila pour toi voici le planning d'aujourd'hui ({today.strftime('%d/%m/%Y')}) :) !",file=file)
     
 
-    @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploie du temps et coloscope en version papier.',guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="papier",description='T\'envoie l\'emploi du temps et coloscope en version papier.',guild_ids= [879451596247933039])
     async def papier(self,ctx:SlashContext):
         edt = discord.File(open("datas/edt.jpg", "rb"), 'edt.png')
         colloscope = discord.File(open("datas/colloscope.jpg", "rb"), 'colloscope.png')
