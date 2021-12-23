@@ -1,7 +1,8 @@
 discord.py
 discord.py[voice]
-discord-py-interactions
+# discord-py-interactions
 # discord-interactions
+discord-py-slash-command
 Pillow
 PyNaCl
 aioredis==2.0.0b1
