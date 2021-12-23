@@ -42,7 +42,7 @@ def generate_motivation_message():
     #         m += "\n\t- " + concours + ": "  +  humanize.precisedelta(dates[concours][1] - datetime.now(), minimum_unit="minutes", format = "%0.0f")
     
     p = (datetime.strptime("02/09/2021", "%d/%m/%Y") - datetime.now()).total_seconds() / (datetime.strptime("02/09/2021", "%d/%m/%Y") - dates["CCINP"][1]).total_seconds()
-    m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100:.2f}%"
+    m = f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100:.2f}%"
     return m
 
 class MotivationCommands(commands.Cog):
