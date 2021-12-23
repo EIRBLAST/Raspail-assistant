@@ -36,10 +36,10 @@ def generate_progress_bar(perecent):
     return full * full_count + blanck * blanck_count
 
 def generate_motivation_message():
-    m = "Voici le contdown jusqu'aux différents concours"
-    for concours in dates.keys():
-        if datetime.now() < dates[concours][1]:
-            m += "\n\t- " + concours + ": "  +  humanize.precisedelta(dates[concours][1] - datetime.now(), minimum_unit="minutes", format = "%0.0f")
+    # m = "Voici le countdown jusqu'aux différents concours"
+    # for concours in dates.keys():
+    #     if datetime.now() < dates[concours][1]:
+    #         m += "\n\t- " + concours + ": "  +  humanize.precisedelta(dates[concours][1] - datetime.now(), minimum_unit="minutes", format = "%0.0f")
     
     p = (datetime.strptime("02/09/2021", "%d/%m/%Y") - datetime.now()).total_seconds() / (datetime.strptime("02/09/2021", "%d/%m/%Y") - dates["CCINP"][1]).total_seconds()
     m += f"\nGlobalement l'avancement de l'année est de {generate_progress_bar(p*100)} {p*100:.2f}%"
@@ -49,7 +49,7 @@ class MotivationCommands(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @cog_ext.cog_slash(name="motivation",description='Te motive (parceque on en a tous besoin)', guild_ids= [879451596247933039])
+    @cog_ext.cog_slash(name="motivation",description='Te motive (parcequ\'on en a tous besoin)', guild_ids= [879451596247933039])
     async def send_motivation(self,ctx:SlashContext):
 
         await ctx.send(content=generate_motivation_message())
@@ -81,7 +81,7 @@ class DailyMotivator(commands.Cog):
     
     @send_motivation_message.before_loop
     async def before_update(self):
-        print('[Motivation]: Waiting for client to loads ...')
+        print('[Motivation]: Waiting for client to loads...')
         await self.client.wait_until_ready()
 
     def cog_unload(self):
