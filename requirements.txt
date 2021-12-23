@@ -1,5 +1,6 @@
 discord.py
 discord.py[voice]
+discord-interactions
 Pillow
 PyNaCl
 aioredis==2.0.0b1
