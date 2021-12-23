@@ -28,7 +28,7 @@ class PlanningCommands(commands.Cog):
             return
         today = datetime.date.today()
         user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
-        user_role_mentionner = filter(lambda r: r.name == "Groupe "+ str(user_grp), ctx.channel.guild.roles )[0].mention
+        user_role_mentionner = list(filter(lambda r: r.name == "Groupe "+ str(user_grp), ctx.channel.guild.roles ))[0].mention
 
         if today.weekday() < 5:
             monday = today - datetime.timedelta(days = today.weekday())
