@@ -33,7 +33,15 @@ def informatique_parity(day: datetime.date) -> str:
     column_index = COLLOSCOPE["mondays"].index(monday.strftime("%d/%m/%Y"))
     res = COLLOSCOPE["informatique"][column_index]
     
-    return 'pair'*(res == 'B') + 'impair'*(res == 'A') + 'entier'*(res == 'C')
+    realparity =  'pair'*(res == 'B') + 'impair'*(res == 'A') + 'entier'*(res == 'C')
+
+    # parity = {
+    #     "pair" : "pair" if get_week_parity(day) == 0 else "impaire" ,
+    #     "impair": "impair" if get_week_parity(day) == 1 else "pair",
+    #     "entier": "entier"
+    # }
+
+    return realparity
 
 def IsParite(parite: str, group_number: int, week_parite: int) -> bool:
     """This function compute if the group attend the course.
@@ -69,7 +77,12 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
     day_index = day.weekday()
     
     monday = day - timedelta(days=day_index)
-    column_index = COLLOSCOPE["mondays"].index(monday.strftime(f"%d/%m/%Y"))
+    mondaystr = monday.strftime(f"%d/%m/%Y")
+
+    if mondaystr in COLLOSCOPE["mondays"]:
+        column_index = COLLOSCOPE["mondays"].index(monday.strftime(f"%d/%m/%Y"))
+    else:
+        return []
 
     context = {
         "parite_informatique": informatique_parity(day),
@@ -89,11 +102,20 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
 
     for c in EDT[day_index]["cours"]:
 
-        if IsParite(c["parite"], grp, get_week_parity(day)):
-            c["subject"] = (c["subject"]).format(**context)
-            c["room"] = (c["room"]).format(**context)
-            c["parite"] = (c["parite"]).format(**context)
+        c["subject"] = (c["subject"]).format(**context)
+        c["room"] = (c["room"]).format(**context)
+        c["parite"] = (c["parite"]).format(**context)
+
+        if (not "informatique" in c["subject"].lower()) and IsParite(c["parite"], grp, get_week_parity(day)):
             events.append(c)
+        elif "informatique" in c["subject"].lower():
+            ip = informatique_parity(day)
+            if ip == 'entier':
+                events.append(c)
+            elif ip == 'pair' and grp % 2 == 0:
+                events.append(c)
+            elif ip == 'impair' and grp % 2 == 1:
+                events.append(c)
 
     events.sort(key=lambda line: timedelta(**line["timedelta"]))
     return events
