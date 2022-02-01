@@ -6,6 +6,22 @@ COLLOSCOPE = json.load(open("datas/colloscope.json", "r"))
 EDT = json.load(open("datas/edt.json", "r"))
 
 
+def get_week_number(day: datetime.date) -> int:
+    """Return the week number of the week containing the day.
+
+    Args:
+        day (datetime.date): A day of the week.
+
+    Returns:
+        [int]: the number of week
+    """
+
+    monday = day - timedelta(days=day.weekday())
+    column_index = COLLOSCOPE["mondays"].index(monday.strftime("%d/%m/%Y"))
+
+    return COLLOSCOPE["weeknumber"][column_index]
+
+
 def get_week_parity(day: datetime.date) -> int:
     """Return the parity of the week containing the day.
 
@@ -116,6 +132,8 @@ def get_events_of_the_day(day: datetime.date, grp: int) -> list:
                 events.append(c)
             elif ip == 'impair' and grp % 2 == 1:
                 events.append(c)
+            else:
+                print("Hein ?")
 
     events.sort(key=lambda line: timedelta(**line["timedelta"]))
     return events
