@@ -255,7 +255,7 @@ class PlanningCommands(commands.Cog):
                     height =  event["duration"]["hours"]
                     
                     blocks.append(timetable_I.generate_block(lines, height, color))
-                colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], header = data_io.DAYS[day] + " \n" + monday.strftime("%d/%m/%Y")))
+                colums.append(timetable_I.generate_column(blocks, [event["timedelta"]["hours"] - 8 for event in events], header = data_io.DAYS[day] + " \n" + (monday + datetime.timedelta(days=day)).strftime("%d/%m/%Y")))
 
 
             # Generate the image
