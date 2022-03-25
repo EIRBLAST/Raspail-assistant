@@ -1,6 +1,6 @@
 # Score the the day from 0 to 10
 
-def score(day: list]) -> int:
+def score(day: list) -> int:
     """Score the day from 0 to 10.
 
     Args:
