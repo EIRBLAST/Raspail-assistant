@@ -1,3 +1,4 @@
+import grp
 import io
 import time
 import datetime
@@ -275,10 +276,14 @@ class PlanningCommands(commands.Cog):
     # Send the score of the current day:
     @cog_ext.cog_slash(name="score",description='T\'envoie le score de la journée en cours.',guild_ids= [879451596247933039])
     async def score(self,ctx:SlashContext):
-        score = daygrade.score(datetime.date.today(), (await self.client.database.get_user_info(ctx.author.id))["group"] + 1)
+
+        grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
+        today_edt = data_io.get_events_of_the_day(datetime.date.today(), grp)
+
+        score = daygrade.score(today_edt)
 
         # Send the score
-        await ctx.send(f"Le score de ta journée est de  {score[0]*20}/20")        
+        await ctx.send(f"Le score de ta journée est de  {score[0]*20:.2f}/20")        
 
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
