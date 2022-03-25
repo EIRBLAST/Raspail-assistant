@@ -3,7 +3,7 @@ import json
 
 DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
 COLLOSCOPE = json.load(open("datas/colloscope.json", "r"))
-EDT = json.load(open("datas/edt.json", "r"))
+EDT = json.load(open("./datas/edt.json", "r"))
 
 
 def get_week_number(day: datetime.date) -> int:
