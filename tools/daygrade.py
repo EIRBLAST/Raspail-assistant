@@ -12,20 +12,20 @@ def score(day: list) -> int:
     score = 0
     
     
-    # We can have a maximum of 9 hours of courses per day
-    # So we have a score of 0 if we have 9 hours of courses and 1 if we have 0 hours
+    # We can have a maximum of 10 hours of courses per day
+    # So we have a score of 0 if we have 10 hours of courses and 1 if we have 0 hours
 
-    day_weight =  1 - sum([c["duration"]["hours"] for c in day ])/9
+    day_weight =  1 - sum([c["duration"]["hours"] for c in day ])/10
 
     # If we have holes in the day, we have a lower score exept if it beetween 12:00 and 14:00 or 11:00 and 13:00
 
-    hours = [0]*9
+    hours = [0]*10
     for c in day:
         p = c["timedelta"]["hours"] - 8
         for l in range(c["duration"]["hours"]):
             hours[p+l] = 1
     
-    print(hours)
+    
 
     # Exemple of a day
     # [0,1,1,1,0,0,0,1,0]
@@ -42,7 +42,7 @@ def score(day: list) -> int:
 
     # find the range of holes
     i = 0
-    print(len(hours))
+    
     while i <= len(hours) - 1 :
         if hours[i] == 0:
             a = i

@@ -292,13 +292,23 @@ class PlanningCommands(commands.Cog):
     async def scores(self,ctx:SlashContext):
         
         nb_of_groups = 12
-        scores = [ {"groupe":grp, "score": daygrade.score(data_io.get_events_of_the_day(datetime.date.today(), grp))} for grp in range(1,nb_of_groups+1)]
+        # scores = [ {"groupe":grp, "score": daygrade.score(data_io.get_events_of_the_day(datetime.date.today(), grp ))} for grp in range(1,nb_of_groups+1)]
+
+        scores = []
+
+        for grp in range(1,nb_of_groups+1):
+            print(grp)
+            today_edt = data_io.get_events_of_the_day(datetime.date.today(), grp)
+            score = daygrade.score(today_edt)
+            scores.append({"groupe":grp, "score": score})
+
 
         scores.sort(key=lambda x: -x["score"][0])
 
-        message = "Les scores sont:\n"
-        for score in scores:
-            message += f"Groupe {score['groupe']} : {score['score'][0]*20:.2f}/20\n"
+        message = "Les scores de vos journées sont:\n"
+        for i, score in  enumerate(scores) :
+            mention = list(filter(lambda r: r.name == "Groupe "+ str(score["groupe"]), ctx.channel.guild.roles ))[0].mention
+            message += f"\t- p{i+1} : {mention} - {score['score'][0]*20:.2f}/20\n"
         
         await ctx.send(message)
 
