@@ -3,7 +3,7 @@ import grp
 import io
 import time
 import datetime
-from cv2 import sort
+
 
 from discord.ext import commands
 from discord_slash import ComponentContext, SlashCommand, SlashContext, cog_ext
@@ -294,7 +294,7 @@ class PlanningCommands(commands.Cog):
         nb_of_groups = 12
         scores = [ {"groupe":grp, "score": daygrade.score(data_io.get_events_of_the_day(datetime.date.today(), grp))} for grp in range(1,nb_of_groups+1)]
 
-        sort(scores, key=lambda x: -x["score"][0])
+        scores.sort(key=lambda x: -x["score"][0])
 
         message = "Les scores sont:\n"
         for score in scores:
@@ -302,6 +302,7 @@ class PlanningCommands(commands.Cog):
         
         await ctx.send(message)
 
+        
 
 def setup(bot:RaspailAssistant):
     bot.add_cog(PlanningCommands(bot))
