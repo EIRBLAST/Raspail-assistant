@@ -43,7 +43,7 @@ class PlanningCommands(commands.Cog):
 
         # Start the creation of a timetable
 
-        timetable_I = timetable.timtable_imager(timetable_dimention_width = 6)
+        timetable_I = timetable.timtable_imager(timetable_dimention_width = 6, timetable_dimention_height = 12)
 
         colums = []
         for day in range(0, 6):
@@ -107,7 +107,7 @@ class PlanningCommands(commands.Cog):
 
 
         events_of_grp = lambda i: data_io.get_events_of_the_day(today, i)
-        timetable_I = timetable.timtable_imager(timetable_dimention_width = nb_of_groups)
+        timetable_I = timetable.timtable_imager(timetable_dimention_width = nb_of_groups, timetable_dimention_height = 12)
 
         columns = []
         for grp in range(1,nb_of_groups+1):
@@ -174,19 +174,19 @@ class PlanningCommands(commands.Cog):
             T'envoie le planning d'un groupe jusqu'à 6 semaines à l'avance.
         """
 
-        print("Bon je commence")
+        # print("Bon je commence")
 
         today = datetime.date.today()
         next_mondays = [today - datetime.timedelta(days=today.weekday()) + datetime.timedelta(days=i*7) for i in range(1,7)]
 
-        print("Heooo ?")
+        # print("Heooo ?")
         if not await self.client.database.user_in_database(ctx.author.id):
             await ctx.send('Utilise /groupe avant tout ;)')
             return
         user_grp = (await self.client.database.get_user_info(ctx.author.id))["group"] + 1
         # user_role_mentionner = list(filter(lambda r: r.name == "Groupe "+ str(user_grp), ctx.channel.guild.roles ))[0].mention
 
-        print("Heooo2 ?")
+        # print("Heooo2 ?")
         # Selection par l'utilisateur de la semaine à afficher
 
         embed = discord.Embed(title="Selectionne la semaine", description="", color=0x00ff00)
@@ -201,11 +201,11 @@ class PlanningCommands(commands.Cog):
         action_row = create_actionrow(selection)
         await ctx.send(embed=embed, components=[action_row])
 
-        print('hey')
+        # print('hey')
         select_ctx: ComponentContext = await wait_for_component(self.client, components=action_row,check=lambda c: ctx.author == c.author)
         
         slected_weeks = select_ctx.selected_options
-        print("Selected weeks:", slected_weeks)
+        # print("Selected weeks:", slected_weeks)
 
         #create the reponse button
         buttons = [
@@ -223,7 +223,7 @@ class PlanningCommands(commands.Cog):
         for week in slected_weeks:
             # Start the creation of a timetable
             monday = datetime.datetime.strptime(week, "%d/%m/%Y")
-            print("monday:",monday)
+            # print("monday:",monday)
 
             timetable_I = timetable.timtable_imager(timetable_dimention_width = 6)
 
@@ -297,7 +297,6 @@ class PlanningCommands(commands.Cog):
         scores = []
 
         for grp in range(1,nb_of_groups+1):
-            print(grp)
             today_edt = data_io.get_events_of_the_day(datetime.date.today(), grp)
             score = daygrade.score(today_edt)
             scores.append({"groupe":grp, "score": score})
