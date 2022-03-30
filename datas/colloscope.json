@@ -5,8 +5,8 @@
     "planning-colles":[
         {"type":"colle","subject":"maths","teatcher":"Rivière","timedelta":{"days":3, "hours":12},"duration":{"hours":1}, "room":"B415","grps":[5,   6,	7,	8,	9,	10,		11,	12,	1,	2,	3,	4,		5,	6,	7,	8,	9,	10,			12,	1,	2,	3,	4,	5,	6]},
         {"type":"colle","subject":"maths","teatcher":"Rivière","timedelta":{"days":4, "hours":12},"duration":{"hours":1}, "room":"B415","grps":[6,	7,	8,	9,	10,	11,		12,	1,	2,	3,	4,	5,		6,	7,	8,	9,	10,	11,			1,	2,	3,	4,	5,	6,	7]},
-        {"type":"colle","subject":"maths","teatcher":"Grand-J.","timedelta":{"days":4, "hours":16},"duration":{"hours":1}, "room":"B415","grps":[1,	2,	3,	4,	5,	6,		7,	8,	9,	10,	11,	12,		1,	2,	3,	4,	5,	6,			8,	9,	10,	11,	12,	1,	2]},
-        {"type":"colle","subject":"maths","teatcher":"Grand-J.","timedelta":{"days":4, "hours":17},"duration":{"hours":1}, "room":"B415","grps":[7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,		2,	3,	4,	5,	6,	7,	8]},
+        {"type":"colle","subject":"maths","teatcher":"Grand-J.","timedelta":{"days":1, "hours":18},"duration":{"hours":1}, "room":"B415","grps":[1,	2,	3,	4,	5,	6,		7,	8,	9,	10,	11,	12,		1,	2,	3,	4,	5,	6,			8,	9,	10,	11,	12,	1,	2]},
+        {"type":"colle","subject":"maths","teatcher":"Grand-J.","timedelta":{"days":1, "hours":19},"duration":{"hours":1}, "room":"B415","grps":[7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,		2,	3,	4,	5,	6,	7,	8]},
         {"type":"colle","subject":"maths","teatcher":"Chafii","timedelta":{"days":2, "hours":17},"duration":{"hours":1}, "room":"B415","grps":[3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,		10,	11,	12,	1,	2,	3,	4]},
         {"type":"colle","subject":"maths","teatcher":"Chafii","timedelta":{"days":2, "hours":18},"duration":{"hours":1}, "room":"B415","grps":[9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,		4,	5,	6,	7,	8,	9,	10]},
         {"type":"colle","subject":"maths","teatcher":"Janvier","timedelta":{"days":1, "hours":12},"duration":{"hours":1}, "room":"B415","grps":[2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	1,	2,	3,	4,	5,	6,	7,		9,	10,	11,	12,	1,	2,	3]},
